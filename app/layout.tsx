@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
        <div> <Navigationheader /> </div>
        
-        <div className='flex flex-col items-center w-full'>{children}</div>
+        <div className='flex w-full'>{children}</div>
        
       </body>
     </html>

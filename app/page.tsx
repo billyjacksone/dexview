@@ -1,7 +1,10 @@
-import Image from 'next/image'
+
+import Sidebar from '@/components/Sidebar'
 
 export default function Home() {
   return (
-    <p >Hello</p>
+    <div className='flex justify-start w-full px-3'>
+      <Sidebar />
+    </div>
   )
 }

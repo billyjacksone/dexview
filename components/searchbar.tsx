@@ -22,12 +22,12 @@ const SearchInput = () => {
   };
 
   return (
-    <form onSubmit={onSearch} className="flex justify-center w-2/3">
+    <form onSubmit={onSearch} className="flex justify-center flex-1 mx-3 border-[1px] border-zinc-800 bg-inherit rounded-md">
       <input
         value={searchQuery || ""}
         onChange={(event) => setSearchQuery(event.target.value)}
-        className="px-5 py-1 w-2/3 sm:px-5 sm:py-3 flex-1 text-zinc-200 bg-zinc-800 focus:outline focus:outline-blue-800  placeholder:text-zinc-400"
-        placeholder="Search by token, name or address"
+        className="rounded-md px-5 py-1 sm:px-5 sm:py-3 flex-1 text-zinc-200 bg-inherit focus:outline focus:outline-blue-800  placeholder:text-zinc-400"
+        placeholder="Search by token name, symbol or address"
       />
     </form>
   );

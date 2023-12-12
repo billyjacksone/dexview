@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Logo from './Logo';
 import Button from './Button';
 import SearchInput from './searchbar';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const Navigationheader = () => {
@@ -21,42 +20,28 @@ const Navigationheader = () => {
     updateWidth();
   }, []);
 
+  const navLinks = [{ name: 'Docs', link: '/docs' }, {name: 'Advertise', link: '/advertise'}, {name: 'New Pairs', link: '/advertise'}, {name: 'Multichart', link: '/advertise'},{name: 'Wallet', link: '/advertise'}]
+
   return (
     <>
-      <div className="w-full h-20 bg-zinc-900 sticky top-0 ali left-0">
-        <div className='flex relative flex-grow-1 flex-shrink-1 flex-basis:0 w-full'> 
-          <div className="container mx-auto px-4 h-full">
-            <div className="flex gap-3 items-center h-full right-0">
-              <Image 
-              src="/Logo.jpg"
-              alt="Logo"
-              width={width < 1024 ? "150" : "250"}
-              height={width < 1024 ? "45" : "74"}
-              className="relative"
-              />
+      <div className="w-full flex h-20 bg-zinc-900 sticky top-0">
+          <div className="flex justify-start items-center h-full w-full">
+            <div className="flex gap-3 items-center h-full w-full px-3">
+              <Logo />
                <SearchInput />
               <ul className="hidden md:flex gap-x-8 text-white">
-                <li>
-                  <Link href="/docs">
-                    <p>Docs</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/advertise">
-                    <p>Advertise</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/wallet">
-                    <p>Wallet</p>
-                  </Link>
-                </li>
+                {navLinks.map((link) => (
+                  <li key={link.name} className='flex items-center'>
+                    <Link href={link.link}>
+                      <p className="hover:text-blue-400 text-center whitespace-nowrap text-[#FFFFFFCC]">{link.name}</p>
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <Button />
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 };
