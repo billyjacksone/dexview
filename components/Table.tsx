@@ -11,51 +11,63 @@ interface DataItem {
 const DataTable: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
 
+  const getTokens = async () => {
+    try {
+      const res:DataItem[] = await axios.get('http://localhost:8000/coins')
+      setData(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   useEffect(() => {
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get(
-    //       'https://api.coinmarketcap.com/data-api/v3/platformpage/trending-pairs/latest?platformId=14&limit=10&ranked=false',
-    //       {
-    //         headers: {
-    //           'X-CMC_PRO_API_KEY': '54b0842c-1cc7-4a72-8850-62bc3be8c488',
-    //         },
-    //       }
-    //     );
+    getTokens
+  },[])
+  
+  // useEffect(() => {
+  //   // const fetchData = async () => {
+  //   //   try {
+  //   //     const response = await axios.get(
+  //   //       'https://api.coinmarketcap.com/data-api/v3/platformpage/trending-pairs/latest?platformId=14&limit=10&ranked=false',
+  //   //       {
+  //   //         headers: {
+  //   //           'X-CMC_PRO_API_KEY': '54b0842c-1cc7-4a72-8850-62bc3be8c488',
+  //   //         },
+  //   //       }
+  //   //     );
 
-    //     // Make sure to check the actual structure of the data returned by the API
-    //     setData(response.data.data);
-    //     console.log(response.data.data);
-    //   } catch (error) {
-    //     console.error('Error fetching data:', error);
-    //   }
-    // const axios = require('axios');
+  //   //     // Make sure to check the actual structure of the data returned by the API
+  //   //     setData(response.data.data);
+  //   //     console.log(response.data.data);
+  //   //   } catch (error) {
+  //   //     console.error('Error fetching data:', error);
+  //   //   }
+  //   // const axios = require('axios');
 
-    let response = null;
-    new Promise(async (resolve, reject) => {
-      try {
-        response = await axios.get('https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-          headers: {
-            'X-CMC_PRO_API_KEY': '54b0842c-1cc7-4a72-8850-62bc3be8c488',
-          },
-        });
-      } catch(ex) {
-        response = null;
-        // error
-        console.log(ex);
-        reject(ex);
-      }
-      if (response) {
-        // success
-        const json = response.data;
-        console.log(json);
-        resolve(json);
-      }
-    });
+  //   let response = null;
+  //   new Promise(async (resolve, reject) => {
+  //     try {
+  //       response = await axios.get('https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
+  //         headers: {
+  //           'X-CMC_PRO_API_KEY': '54b0842c-1cc7-4a72-8850-62bc3be8c488',
+  //         },
+  //       });
+  //     } catch(ex) {
+  //       response = null;
+  //       // error
+  //       console.log(ex);
+  //       reject(ex);
+  //     }
+  //     if (response) {
+  //       // success
+  //       const json = response.data;
+  //       console.log(json);
+  //       resolve(json);
+  //     }
+  //   });
     
 
-    // fetchData();
-  }, []);
+  //   // fetchData();
+  // }, []);
 
   return (
     <div className='flex flex-row'>
