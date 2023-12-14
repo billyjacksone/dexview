@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import SearchInput from '@/components/searchbar'
-import Navigationheader from '@/components/Navigationheader'
-import Sidebar from '@/components/SideBar'
+import Navigation from '@/components/Navigation'
+import { AppContextProvider } from '@/lib/contexts'
 import Table from '@/components/Table'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,20 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-       <div> <Navigationheader /> </div>
-       <div>
-        <div className='flex'>
-        <Sidebar />
-        <Table />
-        </div>
-        {/* <div className='flex flex-row'>
-          Hello
-        </div> */}
-      </div>
-       
-
+      <AppContextProvider>
+        
+       <div> <Navigation /> </div>
        
         <div className='flex w-full'>{children}</div>
+
+        </AppContextProvider>
        
       </body>
     </html>
