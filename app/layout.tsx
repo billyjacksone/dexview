@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import SearchInput from '@/components/searchbar'
-import Navigationheader from '@/components/Navigationheader'
+import Navigation from '@/components/Navigation'
+import { AppContextProvider } from '@/lib/contexts'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-       <div> <Navigationheader /> </div>
-       
-        <div className='flex w-full'>{children}</div>
-       
+       <AppContextProvider>
+         <div> <Navigation /> </div>
+         <div className='flex w-full'>{children}</div>
+       </AppContextProvider>
       </body>
     </html>
   )
