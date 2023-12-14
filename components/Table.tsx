@@ -2,95 +2,132 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+// components/DataTable.tsx
+import React from 'react';
+
 interface DataItem {
   id: number;
   baseTokenName: string;
-  // Add other properties as needed
+  baseTokenSymbol: string;
+  priceUsd: string;
+  txns24h: string;
+  volumeUsd24h: string;
+  priceQuote: string;
+  fdv: number;
+  liquidity: string;
+  poolCreatedDate: number; 
+}
+
+interface ApiResponse {
+  data: {
+    data: DataItem[];
+  };
 }
 
 const DataTable: React.FC = () => {
-  const [data, setData] = useState<DataItem[]>([]);
+  const [data, setData] = React.useState<DataItem[]>([]);
 
   const getTokens = async () => {
     try {
-      const res:DataItem[] = await axios.get('http://localhost:8000/coins')
-      setData(res);
+      const res: ApiResponse = await axios.get('http://localhost:8000/coins');
+      setData(res.data.data);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
-  }
-  useEffect(() => {
-    getTokens
-  },[])
-  
-  // useEffect(() => {
-  //   // const fetchData = async () => {
-  //   //   try {
-  //   //     const response = await axios.get(
-  //   //       'https://api.coinmarketcap.com/data-api/v3/platformpage/trending-pairs/latest?platformId=14&limit=10&ranked=false',
-  //   //       {
-  //   //         headers: {
-  //   //           'X-CMC_PRO_API_KEY': '54b0842c-1cc7-4a72-8850-62bc3be8c488',
-  //   //         },
-  //   //       }
-  //   //     );
+  };
 
-  //   //     // Make sure to check the actual structure of the data returned by the API
-  //   //     setData(response.data.data);
-  //   //     console.log(response.data.data);
-  //   //   } catch (error) {
-  //   //     console.error('Error fetching data:', error);
-  //   //   }
-  //   // const axios = require('axios');
+  React.useEffect(() => {
+    getTokens();
+  }, []);
 
-  //   let response = null;
-  //   new Promise(async (resolve, reject) => {
-  //     try {
-  //       response = await axios.get('https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', {
-  //         headers: {
-  //           'X-CMC_PRO_API_KEY': '54b0842c-1cc7-4a72-8850-62bc3be8c488',
-  //         },
-  //       });
-  //     } catch(ex) {
-  //       response = null;
-  //       // error
-  //       console.log(ex);
-  //       reject(ex);
-  //     }
-  //     if (response) {
-  //       // success
-  //       const json = response.data;
-  //       console.log(json);
-  //       resolve(json);
-  //     }
-  //   });
-    
+  // return (
+  //   <div className='flex flex-row'>
+  //     <table>
+  //       <thead>
+  //         <tr>
+  //           <th>ID</th>
+  //           <th>Base Token Name</th>
+  //           {/* Add other headers as needed */}
+  //         </tr>
+  //       </thead>
+  //       <tbody>
+  //         {data.map((item) => (
+  //           <tr key={item.id}>
+  //             <td>{item.id}</td>
+  //             <td>{item.baseTokenName}</td>
+  //             {/* Add other data cells as needed */}
+  //           </tr>
+  //         ))}
+  //       </tbody>
+  //     </table>
+  //   </div>
+  // );
 
-  //   // fetchData();
-  // }, []);
+
 
   return (
-    <div className='flex flex-row'>
+    <div>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Base Token Name</th>
-            {/* Add other headers as needed */}
+            <th>TOKEN</th>
+            <th>PRICE</th>
+            <th>AGE</th>
+            <th>BUYS</th>
+            <th>SELLS</th>
+            <th>TXNS</th>
+            <th>VOLUME</th>
+            <th>5M</th>
+            <th>1H</th>
+            <th>6H</th>
+            <th>24H</th>
+            <th>LIQUIDITY</th>
+            <th>FDV</th>
           </tr>
         </thead>
         <tbody>
-          {data.map(item => (
+          {data.map((item) => (
             <tr key={item.id}>
-              <td>{item.id}</td>
               <td>{item.baseTokenName}</td>
-              {/* Add other data cells as needed */}
+              <td>{item.priceUsd}</td>
+              <td>{calculateAge(item.poolCreatedDate)}</td>
+              <td>{/* BUYS */}</td>
+              <td>{/* SELLS */}</td>
+              <td>{item.txns24h}</td>
+              <td>{item.volumeUsd24h}</td>
+              <td>{/* 5M */}</td>
+              <td>{/* 1H */}</td>
+              <td>{/* 6H */}</td>
+              <td>{/* 24H */}</td>
+              <td>{item.liquidity}</td>
+              <td>{item.fdv}</td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
+};
+
+const calculateAge = (timestamp: number) => {
+  const currentTime = Date.now();
+  const ageInMilliseconds = currentTime - timestamp;
+  const ageInSeconds = ageInMilliseconds / 1000;
+  const ageInMinutes = ageInSeconds / 60;
+  const ageInHours = ageInMinutes / 60;
+  const ageInDays = ageInHours / 24;
+
+  if (ageInDays >= 1) {
+    return `${Math.floor(ageInDays)} days`;
+  } else if (ageInHours >= 1) {
+    return `${Math.floor(ageInHours)} hours`;
+  } else if (ageInMinutes >= 1) {
+    return `${Math.floor(ageInMinutes)} minutes`;
+  } else {
+    return `${Math.floor(ageInSeconds)} seconds`;
+  }
+
 };
 
 export default DataTable;
