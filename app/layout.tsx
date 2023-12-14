@@ -20,9 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <AppContextProvider>
+        
        <div> <Navigation /> </div>
        
         <div className='flex w-full'>{children}</div>
+
+        </AppContextProvider>
        
       </body>
     </html>
