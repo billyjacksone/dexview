@@ -20,11 +20,15 @@ const Navigationheader = () => {
     updateWidth();
   }, []);
 
-  const navLinks = [{ name: 'Docs', link: '/docs' }, {name: 'Advertise', link: '/advertise'}, {name: 'New Pairs', link: '/advertise'}, {name: 'Multichart', link: '/advertise'},{name: 'Wallet', link: '/advertise'}]
+  const navLinks = [{ name: 'Docs', link: '/docs' },
+   {name: 'Advertise', link: '/advertise'}, 
+   {name: 'New Pairs', link: '/advertise'}, 
+   {name: 'Multichart', link: '/advertise'},
+   {name: 'Wallet', link: '/advertise'}]
 
   return (
     <>
-      <div className="w-full flex h-20 bg-zinc-900 sticky top-0">
+      <div className="w-full flex h-13 bg-zinc-900 sticky top-0">
           <div className="flex justify-start items-center h-full w-full">
             <div className="flex gap-3 items-center h-full w-full px-3">
               <Logo />

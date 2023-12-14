@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import { AppContextProvider } from '@/lib/contexts'
+import Table from '@/components/Table'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-       <AppContextProvider>
-         <div> <Navigation /> </div>
-         <div className='flex w-full'>{children}</div>
-       </AppContextProvider>
+       <div> <Navigation /> </div>
+       
+        <div className='flex w-full'>{children}</div>
+       
       </body>
     </html>
   )
