@@ -63,8 +63,8 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Navigation from '@/components/Navigation';
 import { AppContextProvider } from '@/lib/contexts';
-import SideBar from '@/components/Sidebar';
-import Table from '@/components/Table';
+import SideBar from '@/components/SideBar2';
+import Table from '@/components/Table2';
 
 const inter = Inter({ subsets: ['latin'] });
 
