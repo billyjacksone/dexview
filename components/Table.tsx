@@ -18,6 +18,8 @@ interface DataItem {
   poolCreatedDate: number; 
 }
 
+
+
 interface ApiResponse {
   data: {
     data: DataItem[];
@@ -26,6 +28,7 @@ interface ApiResponse {
 
 const DataTable: React.FC = () => {
   const [data, setData] = React.useState<DataItem[]>([]);
+  const [currency, setCurrency] = React.useState<any[]>([]);
 
   const getTokens = async () => {
     try {
@@ -35,8 +38,18 @@ const DataTable: React.FC = () => {
       console.log(error);
     }
   };
+  const getCurreny = async () => {
+    try {
+      const res:any[] = await axios.get('http://localhost:8000/coins/curreny');
+      setCurrency(res)
+      console.log(res);
+    } catch (error) {
+      
+    }
+  }
 
   React.useEffect(() => {
+    getCurreny();
     getTokens();
   }, []);
 
