@@ -1,23 +1,74 @@
-"use client";
-import React, { useEffect } from 'react'
-import Navigationheader from './Navigationheader';
+'use client'
+// import React, { useEffect } from 'react';
+// import NavigationHeader from './NavigationHeader';
+// import Image from 'next/image';
+// import Trending from './Trending2';
+// import { useAppContext } from '@/lib/contexts';
+
+// const sampleTrendingElements = [
+//   { rank: 1, name: 'AOA', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
+//   { rank: 2, name: 'IGRAIL', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
+// ];
+
+// const Navigation = () => {
+//   const { setTrendingElements } = useAppContext();
+
+//   useEffect(() => {
+//     setTrendingElements(sampleTrendingElements);
+//   }, []);
+
+//   return (
+//     <>
+//       <div style={{ padding: 'var(--chakra-space-2)' }}>
+//         <Trending />
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Navigation;
+
+// contexts.js
+// Your component file
+import React, { useEffect } from 'react';
+import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
-import Trending from './Trending';
-import { useAppContext } from '@/lib/contexts';
+import Trending from './Trending2';
 
 const sampleTrendingElements = [
-  {rank: 1, name: 'AOA', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa"/>},
-  {rank: 2, name: 'IGRAIL', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa"/>},
-]
+  { rank: 1, name: 'AOA', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
+  { rank: 2, name: 'IGRAIL', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
+];
 
 const Navigation = () => {
-  const {setTrendingElements} = useAppContext();
+  const { setTrendingElements } = useAppContext();
+
   useEffect(() => {
     setTrendingElements(sampleTrendingElements);
   }, []);
+
   return (
-    <> <Navigationheader/> <Trending /> </>
-  )
-}
+    <>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          paddingInlineStart: 'var(--chakra-space-2)',
+          paddingInlineEnd: 'var(--chakra-space-2)',
+          background: 'rgb(22, 26, 30)',
+          fontSize: 'var(--chakra-fontSizes-xs)',
+          position: 'static',
+          top: '56px',
+          zIndex: '998',
+          height: '48px',
+        }}
+      >
+        <Trending />
+      </div>
+    </>
+  );
+};
 
 export default Navigation;
+
+

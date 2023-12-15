@@ -1,55 +1,96 @@
-// components/PairTable.tsx
-"use client"
+// components/DataTable.tsx
+'use client'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-interface PairData {
-  baseCurrencyName: string;
-  quoteCurrencyName: string;
-  // Add other properties as needed
+interface DataItem {
+  id: number;
+  baseTokenName: string;
+  baseTokenSymbol: string;
+  priceUsd: string;
+  txns24h: string;
+  volumeUsd24h: string;
+  priceQuote: string;
+  fdv: number;
+  liquidity: string;
+  poolCreatedDate: number;
 }
 
-const PairTable: React.FC = () => {
-  const [pairsData, setPairsData] = useState<PairData[]>([]);
+const DataTable: React.FC = () => {
+  const [tokens, setTokens] = useState<DataItem[]>([]);
+  const [currency, setCurrency] = useState<any[]>([]);
+
+  const getTokens = async () => {
+    try {
+      const res: DataItem[] = await axios.get('http://localhost:8000/coins');
+      setTokens(res.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCurreny = async () => {
+    try {
+      const res: any[] = await axios.get('http://localhost:8000/coins/currency');
+      setCurrency(res.data.data.pageList);
+      // console.log(res.data.data.pageList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          'https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=1&dexer-id=1348&sort-field=txs24h&desc=true&page=1&pageSize=50'
-        );
-        // Extract the relevant data from the API response
-        const extractedData: PairData[] = response.data.data.map((pair: any) => ({
-          baseCurrencyName: pair.baseCurrencyName,
-          quoteCurrencyName: pair.quoteCurrencyName,
-          // Add other properties as needed
-        }));
-        setPairsData(extractedData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
+    getCurreny();
+    getTokens();
   }, []);
 
+  const calculateAge = (timestamp: number) => {
+    const currentTime = Date.now();
+    const ageInMilliseconds = currentTime - timestamp;
+    const ageInSeconds = ageInMilliseconds / 1000;
+    const ageInMinutes = ageInSeconds / 60;
+    const ageInHours = ageInMinutes / 60;
+    const ageInDays = ageInHours / 24;
+
+    if (ageInDays >= 1) {
+      return `${Math.floor(ageInDays)} days`;
+    } else if (ageInHours >= 1) {
+      return `${Math.floor(ageInHours)} hours`;
+    } else if (ageInMinutes >= 1) {
+      return `${Math.floor(ageInMinutes)} minutes`;
+    } else {
+      return `${Math.floor(ageInSeconds)} seconds`;
+    }
+  };
+
   return (
-    <div>
-      <h2>Pair Pages</h2>
-      <table>
+    <div style={{ overflowX: 'auto' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
         <thead>
           <tr>
-            <th>Base Currency</th>
-            <th>Quote Currency</th>
-            {/* Add other headers as needed */}
+            <th style={tableHeaderStyle}>TOKEN</th>
+            <th style={tableHeaderStyle}>PRICE</th>
+            <th style={tableHeaderStyle}>AGE</th>
+            <th style={tableHeaderStyle}>TXNS</th>
+            <th style={tableHeaderStyle}>VOLUME</th>
+            <th style={tableHeaderStyle}>6H</th>
+            <th style={tableHeaderStyle}>24H</th>
+            <th style={tableHeaderStyle}>LIQUIDITY</th>
+            <th style={tableHeaderStyle}>FDV</th>
           </tr>
         </thead>
         <tbody>
-          {pairsData.map((pair, index) => (
-            <tr key={index}>
-              <td>{pair.baseCurrencyName}</td>
-              <td>{pair.quoteCurrencyName}</td>
-              {/* Add other data cells as needed */}
+          {currency.map((item) => (
+            <tr key={item.id}>
+              <td style={tableCellStyle}>{item.baseTokenName}</td>
+              <td style={tableCellStyle}>{Number(item.priceUsd).toFixed(4)}</td>
+              <td style={tableCellStyle}>{calculateAge(item.poolCreatedDate)}</td>
+              <td style={tableCellStyle}>{item.txns24h}</td>
+              <td style={tableCellStyle}>{item.volumeUsd24h}</td>
+              <td style={tableCellStyle}>{/* 6H */}</td>
+              <td style={tableCellStyle}>{/* 24H */}</td>
+              <td style={tableCellStyle}>{item.liquidity}</td>
+              <td style={tableCellStyle}>{Number(item.fdv).toFixed(4)}</td>
             </tr>
           ))}
         </tbody>
@@ -58,4 +99,23 @@ const PairTable: React.FC = () => {
   );
 };
 
-export default PairTable;
+const tableHeaderStyle: React.CSSProperties = {
+  background: '#070707',
+  border: '1px solid #ddd',
+  padding: '8px',
+  textAlign: 'left',
+  whiteSpace: 'nowrap', // prevent text wrapping
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};
+
+const tableCellStyle: React.CSSProperties = {
+  border: '1px solid #ddd',
+  padding: '8px',
+  textAlign: 'left',
+  whiteSpace: 'nowrap', // prevent text wrapping
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+};
+
+export default DataTable;
