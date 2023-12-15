@@ -33,7 +33,6 @@ const DataTable: React.FC = () => {
     try {
       const res: any[] = await axios.get('http://localhost:8000/coins/currency');
       setCurrency(res.data.data.pageList);
-      // console.log(res.data.data.pageList);
     } catch (error) {
       console.log(error);
     }
@@ -63,29 +62,10 @@ const DataTable: React.FC = () => {
     }
   };
 
-  const tableHeaderStyle: React.CSSProperties = {
-    background: '#070707',
-    border: '1px solid #ddd',
-    padding: '8px',
-    textAlign: 'left',
-    whiteSpace: 'nowrap', // prevent text wrapping
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  };
-
-  const tableCellStyle: React.CSSProperties = {
-    border: '1px solid #ddd',
-    padding: '8px',
-    textAlign: 'left',
-    whiteSpace: 'nowrap', // prevent text wrapping
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  };
-
   return (
-    <div className="css-rltemf" style={{ marginTop: 'var(--chakra-space-2)', padding: '8px' }}>
-      <div className="css-1df9dlc" style={{ background: 'rgb(22, 26, 30)', padding: '8px' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', padding: '8px' }}>
+    <div style={{ overflowX: 'auto', background: 'rgb(22, 26, 30)', padding: 'var(--chakra-space-2)' }}>
+      <div style={{ background: 'rgb(22, 26, 30)', padding: '0px', border: 'none' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px', fontSize: 'var(--chakra-fontSizes-xs)', border: '1px solid #d0d1d2' }}>
           <thead>
             <tr>
               <th style={tableHeaderStyle}>TOKEN</th>
@@ -100,17 +80,44 @@ const DataTable: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {tokens.map((item) => (
-              <tr key={item.id}>
-                <td style={tableCellStyle}>{item.baseTokenName}</td>
-                <td style={tableCellStyle}>{Number(item.priceUsd).toFixed(4)}</td>
-                <td style={tableCellStyle}>{calculateAge(item.poolCreatedDate)}</td>
-                <td style={tableCellStyle}>{item.txns24h}</td>
-                <td style={tableCellStyle}>{item.volumeUsd24h}</td>
-                <td style={tableCellStyle}>{/* 6H */}</td>
-                <td style={tableCellStyle}>{/* 24H */}</td>
-                <td style={tableCellStyle}>{item.liquidity}</td>
-                <td style={tableCellStyle}>{Number(item.fdv).toFixed(4)}</td>
+            {tokens.map((item, index) => (
+              <tr
+                key={item.id}
+                style={{
+                  cursor: 'pointer',
+                  transition: 'background 0.3s',
+                  borderBottom: '1px solid #d0d1d2',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(169, 169, 169, 0.1)')}
+                onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+              >
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder, display: 'flex', alignItems: 'center' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      width: '20px',
+                      height: '20px',
+                      backgroundColor: 'rgb(22, 26, 30)',
+                      color: '#FFFFFF',
+                      borderRadius: '5px',
+                      marginRight: '10px',
+                      fontSize: 'var(--chakra-fontSizes-2xs)',
+                    }}
+                  >
+                    #{index + 1}
+                  </div>
+                  {item.baseTokenName}
+                </td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.priceUsd).toFixed(4)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{calculateAge(item.poolCreatedDate)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.txns24h}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.volumeUsd24h}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{/* 6H */}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{/* 24H */}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.liquidity}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.fdv).toFixed(4)}</td>
               </tr>
             ))}
           </tbody>
@@ -118,6 +125,30 @@ const DataTable: React.FC = () => {
       </div>
     </div>
   );
+};
+
+const tableHeaderStyle: React.CSSProperties = {
+  background: 'rgb(22, 26, 30)',
+  padding: '8px',
+  textAlign: 'left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  borderRight: '1px solid #d0d1d2', // Add this line for Graystone 700 between columns
+};
+
+const tableCellStyle: React.CSSProperties = {
+  padding: '8px',
+  textAlign: 'left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  borderBottom: '1px solid #d0d1d2',
+  borderRight: '1px solid #d0d1d2', // Add this line for Graystone 700 between columns
+};
+
+const tableCellWithBorder: React.CSSProperties = {
+  borderRight: '1px solid #d0d1d2', // Add this line for Graystone 700 between cells
 };
 
 export default DataTable;

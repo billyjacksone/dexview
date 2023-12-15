@@ -24,7 +24,7 @@ const SidebarListItem: React.FC<SidebarListItemProps> = ({ name, Icon, src, colo
 
   return (
     <Link href={link}>
-      <div className={`flex items-center gap-1 text-gray-300 p-2 rounded-md transition-all hover:bg-[#1a1a1a]`}>
+      <div className={`flex items-center gap-1 text-gray-300 p-2 rounded-md transition-all hover:bg-[#1a1a1a]`} style={{ background: 'rgb(22, 26, 30)' }}>
         {Icon && <Icon className="w-8 h-8" />}
         {src && <Image alt="Icon" src={src} width={26} height={26} />}
         {!showIconsOnly && <p className="opacity-80 text-xs">{name}</p>}
@@ -55,12 +55,12 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className={`flex flex-col bg-[#1e2025] text-white w-[12%] mt-3 items-center gap-2 ${showIconsOnly ? 'max-w-[40px]' : ''}`}>
-      <div className={`flex w-[95%] border-b-[1px] border-[rgb(39,42,42)] py-1 items-center cursor-pointer`} onClick={handleToggleSidebar}>
+    <div className={`flex flex-col bg-[#1e2025] text-white w-[12%] mt-3 items-center gap-2 ${showIconsOnly ? 'max-w-[40px]' : ''}`} style={{ background: 'rgb(22, 26, 30)' }}>
+      <div className={`flex w-[95%] border-b-[1px] border-[rgb(39,42,42)] py-1 items-center cursor-pointer`} onClick={handleToggleSidebar} style={{ background: 'rgb(22, 26, 30)' }}>
         <p className="flex-1 opacity-80 text-xs">Chains</p>
         <ListIn className="w-6 h-6" />
       </div>
-      <div className="flex w-full px-1 flex-col gap-1">
+      <div className="flex w-full px-1 flex-col gap-1" style={{ background: 'rgb(22, 26, 30)' }}>
         {SidebarListItems.map((item, index) => (
           <SidebarListItem
             key={index}
