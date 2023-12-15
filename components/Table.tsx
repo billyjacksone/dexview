@@ -31,7 +31,6 @@ const DataTable: React.FC = () => {
     try {
       const res:DataItem[] = await axios.get('http://localhost:8000/coins')
       setData(res.data.data);
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
