@@ -1,10 +1,9 @@
-
-import Sidebar from '@/components/SideBar'
+import Table from '@/components/Table';
 
 export default function Home() {
   return (
-    <div className='flex justify-start w-full px-3'>
-      {/* <Sidebar /> */}
+    <div style={{ flex: '1', overflow: 'scrool', paddingTop: '50 %', paddingLeft: '0px'}}>
+      <Table />
     </div>
   )
 }

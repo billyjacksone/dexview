@@ -1,6 +1,6 @@
 // components/Button.tsx
 import React, { useState } from 'react';
-import MailIcon from '../public/mail.svg';
+import MailIcon from '@/public/mail.svg';
 
 const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   // Add your logic for handling the connect box content

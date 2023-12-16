@@ -1,6 +1,5 @@
 'use client'
 import React, { ReactNode } from 'react';
-import './globals.css';
 import { AppContextProvider } from '@/lib/contexts';
 import NavigationHeader from '@/components/Navigationheader';
 import NavigationTrending from '@/components/Navigation';
@@ -25,10 +24,10 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata, children }) => {
 
             <div style={{ display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '1px' }}> {/* Adjust marginTop */}
               <SideBar style={{ width: '200px', background: '#f0f0f0', padding: '20px' }} />
-              <div style={{ flex: '1', display: 'flex', flexDirection: 'column', paddingLeft: '10px', paddingTop:'10px', paddingBottom: '20px' }}>
+              <div style={{ flex: '1', display: 'flex', flexDirection: 'column', paddingLeft: '5px' }}>
                 <TopBar />
-                <div style={{ flex: '1', overflow: 'scrool', paddingTop: '5px', paddingLeft: '0px'}}>
-                  {/* <Table /> */}
+                <div style={{ flex: '1', overflow: 'auto', paddingTop: '0 px' }}>
+                  <Table />
                   {children}
                 </div>
               </div>
@@ -46,19 +45,3 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata, children }) => {
 
 export default RootLayout;
 
-
-
-
-// pages/index.tsx
-// import './globals.css';
-// import React from 'react';
-// import RootLayout from '@/components/RootLayout';
-// import Table from '@/components/Table2';
-
-// const HomePage: React.FC = () => {
-//   return (
-//     <RootLayout />
-//   );
-// };
-
-// export default HomePage;

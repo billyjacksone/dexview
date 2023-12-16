@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import axios from 'axios';
 
 interface DataItem {
@@ -19,13 +18,12 @@ interface DataItem {
 }
 
 const DataTable: React.FC = () => {
-  
-  const [currency, setcurrency] = useState<DataItem[]>([]);
+  const [tokens, setTokens] = useState<DataItem[]>([]);
 
   const getTokens = async () => {
     try {
-      const res: DataItem[] = await axios.get('http://localhost:8000/coins/currency');
-      setcurrency(res.data.data.pageList);
+      const res: DataItem[] = await axios.get('http://localhost:8000/coins');
+      setTokens(res.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -72,40 +70,25 @@ const DataTable: React.FC = () => {
   };
 
   return (
-    <div className="css-199ixfo" style={{ minWidth: '900px', fontSize: 'var(--chakra-fontSizes-sm)' }}>
-      <div className="css-rltemf" style={{ marginTop: 'var(--chakra-space-2)' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #222' }}>
+    <div className="css-1wde6zi" style={{  flex: '1 1 0%', overflow: 'vissible', width: '100%' }}>
+      <div style={{ background: 'rgb(22, 26, 30)', padding: '0px', border: '1px solid #363636', overflow: 'hidden' }}>
+        <table style={{ width: '100%',border: '1px solid #363636', borderCollapse: 'collapse',
+         fontSize: 'var(--chakra-fontSizes-xs)',  borderRadius: '0px' , paddingLeft: '0px', paddingTop: '10px'}}>
           <thead>
-            <tr>
-              <th className="css-190qij5" style={{ padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'left', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '1px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>TOKEN</th>
-              <th style={{ padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center',  left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>PRICE</th>
-              <th style={{padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>AGE</th>
-              <th style={{ padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>TXNS</th>
-              <th style={{padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>VOLUME</th>
-              <th style={{ padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>6H</th>
-              <th style={{ padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>24H</th>
-              <th style={{ padding: 'var(--chakra-space-2)', textTransform: 'uppercase', fontWeight: 600, 
-              textAlign: 'center', position: 'sticky', left: '0px', background: 'rgb(23, 25, 28)', borderLeft: '5px solid #222', 
-              borderBottom: '1px solid #222', borderColor: 'graystone600' }}>LIQUIDITY</th>
+          <tr>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TOKEN</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>PRICE</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>AGE</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TXNS</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>VOLUME</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>6H</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>24H</th>
+              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>LIQUIDITY</th>
               <th style={{ ...tableHeaderStyle, background: '#1A1C21' }}>FDV</th>
             </tr>
           </thead>
           <tbody>
-            {currency.map((item, index) => (
+            {tokens.map((item, index) => (
               <tr
                 key={item.id}
                 style={{
@@ -125,8 +108,8 @@ const DataTable: React.FC = () => {
                       width: '20px',
                       height: '20px',
                       backgroundColor: 'rgb(22, 26, 30)',
-                      color: '#FFFFFF',
-                      borderRadius: '5px',
+                      color: '#ffff',
+                      borderRadius: '15px',
                       marginRight: '10px',
                       fontSize: 'var(--chakra-fontSizes-2xs)',
                     }}
@@ -146,7 +129,7 @@ const DataTable: React.FC = () => {
             {Number(item.quoteChange24h).toFixed(3)}
           </td>
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatValue(item.liquidity)}</td>
-                <td style={{ ...tableCellStyle }}>{formatValue(item.fdv)}</td>
+                <td style={{ ...tableCellStyle , ...tableCellWithBorder }}>{formatValue(item.fdv)}</td>
               </tr>
             ))}
           </tbody>
@@ -164,8 +147,7 @@ const tableHeaderStyle: React.CSSProperties = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   borderRight: '1px solid graystone500',
-  width: 'auto',
-  tableLayout: 'auto',
+  border: '1px solid #363636'
 };
 
 const tableCellStyle: React.CSSProperties = {
@@ -180,6 +162,7 @@ const tableCellStyle: React.CSSProperties = {
 
 const tableCellWithBorder: React.CSSProperties = {
   borderRight: '1px solid graystone500',
+  border: '1px solid #363636'
 };
 
 export default DataTable;
