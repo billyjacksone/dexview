@@ -1,10 +1,16 @@
 import Table from '@/app/components/Table';
+// import Table2 from'./Tables/TableEth';
+import Table2 from './components/Table';
+import TopBar from './TopBar/Topbarelements';
 
 export default function Home() {
   return (
-    <div style={{ flex: '1', overflow: 'scrool', paddingTop: '50 %', paddingLeft: '0px'}}>
-      <Table />
+    <div style={{flex: '1', overflow: 'hidden', paddingTop: '0 px', paddingBottom: '30px'}}>
+      <TopBar />
+    <div style={{ flex: '1', overflow: 'hidden', paddingTop: '50 %', paddingLeft: '0px'}}>
+      <Table2 />
       {/* <p>Hey</p> */}
+    </div>
     </div>
   )
 }

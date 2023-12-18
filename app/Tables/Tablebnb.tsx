@@ -6,6 +6,7 @@ interface DataItem {
   id: number;
   baseTokenName: string;
   baseTokenSymbol: string;
+  quotoTokenSymbol: string;
   priceUsd: string;
   txns24h: string;
   volumeUsd24h: string;
@@ -22,7 +23,7 @@ const DataTable: React.FC = () => {
 
   const getTokens = async () => {
     try {
-      const res: DataItem[] = await axios.get('http://localhost:8000/coins/ethsushi');
+      const res: DataItem[] = await axios.get('http://localhost:8000/coins/bnbpan');
       setTokens(res.data.data.pageList);
     } catch (error) {
       console.log(error);
@@ -116,12 +117,22 @@ const DataTable: React.FC = () => {
                   >
                     #{index + 1}
                   </div>
-                  {item.baseTokenName}
+                  <span style={{ fontSize: '14px', color: '#ffffff' }}>
+                    {item.baseTokenSymbol}
+                  </span>
+                  /
+                  <span style={{ fontSize: '14px', color: '#b0b0b0', marginRight:'10px' }}>
+                    {item.quotoTokenSymbol}
+                  </span>{' '} {item.baseTokenName}
                 </td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.priceUsd).toFixed(4)}</td>
+                {/* <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.baseTokenSymbol}{item.quotoTokenSymbol}{Number(item.priceUsd).toFixed(4)}</td> */}
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>
+                 {Number(item.priceUsd).toFixed(4)}
+                </td>
+
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{calculateAge(item.poolCreatedDate)}</td>
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.txns24h}</td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(formatValue(item.volumeUsd24h)).toFixed(3)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatValue(item.volumeUsd24h)}</td>
                 {/* <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.quotePrice1h).toFixed(3)}</td> */}
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: renderTextColor(item.quotePrice1h) }}>
             {Number(item.quotePrice1h).toFixed(3)} </td>

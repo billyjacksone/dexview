@@ -1,7 +1,7 @@
-// // HomePage.tsx
+
 // 'use client'
 // import React, { useState } from 'react';
-// import MoreButton from '../components/MoreButton';
+// import MoreButton from '@/app/components/MoreButton';
 
 // interface ListItemProps {
 //   item: { icon?: string; text: string; link: string };
@@ -15,22 +15,34 @@
 
 //   return (
 //     <td className="table-cell">
-//       <div
-//         className="flex items-center element-box"
-//         onClick={handleClick}
-//       >
-//         {item.icon && <img src={item.icon} alt="icon" className="w-4 h-4 mr-2" />}
+//       <div className="element-box" onClick={handleClick}>
+//         {item.icon && <img src={item.icon} alt="icon" className="icon" />}
 //         <p>{item.text}</p>
 //       </div>
 //       <style jsx>{`
 //         .element-box {
-//           border: 1px solid #4c4c4c;
+//           border: 1px solid #3c3c3c;
 //           padding: 8px;
 //           cursor: pointer;
+//           display: flex;
+//           align-items: center;
+//           justify-content: space-between;
+//           text-align: center;
 //         }
 
 //         .element-box:hover {
-//           background-color: #f0f0f0; /* Add a background color on hover if needed */
+//           background-color: #f0f0f0;
+//         }
+
+//         .icon {
+//           max-width: 20px;
+//           max-height: 20px;
+//           margin-right: 10px;
+//         }
+
+//         p {
+//           margin: 0px;
+//           font-size: 14px;
 //         }
 //       `}</style>
 //     </td>
@@ -39,17 +51,16 @@
 
 // const HomePage: React.FC = () => {
 //   const initialElements = [
-//     { text: 'AllDEXes' },
-//     { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethuniswapv3' },
-//     { icon: "/uniswap.webp", text: 'UniswapV3', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Uniswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Sushiswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Pancakeswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Shibaswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Defiswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Kyberswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Fraxswap', link: '/redirect/uniswap' },
-//     { icon: "/uniswap.webp", text: 'Radioshack', link: '/redirect/uniswap' },
+//     { text: 'All DEXes' },
+//     { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
+//     { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
+//     { icon: "/uniswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
+//     { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethpan' },
+//     { icon: "/uniswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
+//     { icon: "/uniswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
+//     { icon: "/uniswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
+//     { icon: "/uniswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
+//     { icon: "/uniswap.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
 //     // ... (other elements with links)
 //   ];
 
@@ -57,7 +68,7 @@
 //   const [showMore, setShowMore] = useState(false);
 
 //   // Function to handle click on "More" button
-//   const hasMoreThan7Elements = () => elements.length > 7;
+//   const hasMoreThan7Elements = () => elements.length > 10;
 
 //   const handleMoreClick = () => {
 //     setShowMore(!showMore);
@@ -68,15 +79,13 @@
 //       <table className="custom-table">
 //         <tbody>
 //           <tr className="table-row">
-//             {elements.slice(0, 9).map((item, index) => (
-//               <td key={index} className="table-cell">
-//                 <ListItem item={item} />
-//               </td>
+//             {elements.map((item, index) => (
+//               <ListItem key={index} item={item} />
 //             ))}
 //             {hasMoreThan7Elements() && (
 //               <td className="table-cell">
 //                 <MoreButton
-//                   elements={elements.slice(9)}
+//                   elements={elements.slice(10)}
 //                   handleClick={handleMoreClick}
 //                 />
 //               </td>
@@ -87,19 +96,8 @@
 //       <style jsx>{`
 //         .container {
 //           background: rgb(22, 26, 30);
-//           padding-top: 0px;
-//           padding-bottom: 0px;
-//           padding-left: 10px;
-//           padding-right: var(--chakra-space-2);
-//           border: 1px solid #363636;
-//         }
-
-//         .table-row {
-//           display: flex;
-//         }
-
-//         .table-cell {
-//           margin-right: 8px; /* Adjust the spacing between cells as needed */
+//           padding: 10px;
+//           border: 1px solid #3c3c3c;
 //         }
 
 //         .custom-table {
@@ -108,32 +106,11 @@
 //         }
 
 //         .table-row {
-//           border-bottom: 1px solid var(--chakra-colors-whiteAlpha-100);
+//           display: flex;
 //         }
 
 //         .table-cell {
-//           padding: 8px;
-//           border-left: 1px solid #363636; /* Add a border between elements */
-//           box-sizing: border-box;
-//         }
-
-//         .more-button {
-//           border: none;
-//           background: #fffff;
-//           cursor: pointer;
-//           color: #fff;
-//         }
-
-//         .table-cell:first-child {
-//           border-left: none; /* Remove the left border for the first element */
-//         }
-
-//         img {
-//           vertical-align: middle;
-//         }
-
-//         p {
-//           margin: 0;
+//           margin-right: 8px;
 //         }
 //       `}</style>
 //     </div>
@@ -142,39 +119,62 @@
 
 // export default HomePage;
 
+
 'use client'
 import React, { useState } from 'react';
-import MoreButton from '../components/MoreButton';
+import MoreButton from '@/app/components/MoreButton';
 
 interface ListItemProps {
   item: { icon?: string; text: string; link: string };
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
+  const [clicked, setClicked] = useState(false);
+
   const handleClick = () => {
     // Redirect to the specified link
     window.location.href = item.link;
+    setClicked(!clicked);
   };
 
   return (
     <td className="table-cell">
-      <div className="element-box" onClick={handleClick}>
+      <div
+        className={`element-box ${clicked ? 'clicked' : ''}`}
+        onClick={handleClick}
+      >
         {item.icon && <img src={item.icon} alt="icon" className="icon" />}
         <p>{item.text}</p>
       </div>
       <style jsx>{`
         .element-box {
-          border: 1px solid #3c3c3c;
           padding: 8px;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: space-between;
           text-align: center;
+          position: relative;
         }
 
-        .element-box:hover {
-          background-color: #f0f0f0;
+        .element-box.clicked::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 5px;
+          background-color: #fffff;
+        }
+
+        .element-box:hover::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 5px;
+          background-color: #161616;
         }
 
         .icon {
@@ -195,16 +195,15 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethuniswapv3' },
-    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswap' },
-    { icon: "/uniswap.webp", text: 'Uniswap', link: '' },
-    { icon: "/uniswap.webp", text: 'Sushiswap', link: '/redirect/uniswap' },
-    // { icon: "/uniswap.webp", text: 'Pancakeswap', link: '/redirect/uniswap' },
-    // { icon: "/uniswap.webp", text: 'Shibaswap', link: '/redirect/uniswap' },
-    // { icon: "/uniswap.webp", text: 'Defiswap', link: '/redirect/uniswap' },
-    // { icon: "/uniswap.webp", text: 'Kyberswap', link: '/redirect/uniswap' },
-    // { icon: "/uniswap.webp", text: 'Fraxswap', link: '/redirect/uniswap' },
-    // { icon: "/uniswap.webp", text: 'Radioshack', link: '/redirect/uniswap' },
+    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
+    { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
+    { icon: "/uniswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
+    { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethpan' },
+    { icon: "/uniswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
+    { icon: "/uniswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
+    { icon: "/uniswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
+    { icon: "/uniswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
+    { icon: "/uniswap.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
     // ... (other elements with links)
   ];
 
@@ -212,14 +211,14 @@ const HomePage: React.FC = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Function to handle click on "More" button
-  const hasMoreThan7Elements = () => elements.length > 7;
+  const hasMoreThan7Elements = () => elements.length > 10;
 
   const handleMoreClick = () => {
     setShowMore(!showMore);
   };
 
   return (
-    <div className="container">
+    <div className="outer-box">
       <table className="custom-table">
         <tbody>
           <tr className="table-row">
@@ -229,7 +228,7 @@ const HomePage: React.FC = () => {
             {hasMoreThan7Elements() && (
               <td className="table-cell">
                 <MoreButton
-                  elements={elements.slice(9)}
+                  elements={elements.slice(10)}
                   handleClick={handleMoreClick}
                 />
               </td>
@@ -238,10 +237,12 @@ const HomePage: React.FC = () => {
         </tbody>
       </table>
       <style jsx>{`
-        .container {
+        .outer-box {
           background: rgb(22, 26, 30);
-          padding: 10px;
+          padding: 2px;
           border: 1px solid #3c3c3c;
+          display: flex;
+          flex-direction: column;
         }
 
         .custom-table {
@@ -251,6 +252,7 @@ const HomePage: React.FC = () => {
 
         .table-row {
           display: flex;
+          flex-wrap: wrap;
         }
 
         .table-cell {

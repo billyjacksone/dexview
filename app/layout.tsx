@@ -97,15 +97,12 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata, children }) => {
             <NavigationHeader />
             <NavigationTrending />
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '1px' }}>
-              <SideBar style={{ width: '200px', background: '#f0f0f0', padding: '20px' }} />
+            <div style={{ display: 'flex',flexDirection:'', alignItems: 'flex-start', flex: '1', marginTop: '0px' }}>
+              <SideBar style={{ width: '300px', background: '#f0f0f0', padding: '20px', overflow: 'scroll' }} />
               <div style={{ flex: '1', display: 'flex', flexDirection: 'column', paddingLeft: '10px', paddingTop: '10px', paddingBottom: '20px' }}>
-                <TopBar />
-                <div style={{ flex: '1', overflow: 'scroll', paddingTop: '5px', paddingLeft: '0px' }}>
-                  {/* Render different tables based on the selected item */}
-                  {selectedItem === 'Advertise' && <Table data={tableData} />}
-                  {selectedItem === 'Etherium Mainnet' && <Table data={tableData} />}
-                  {/* Add more conditions for other tables */}
+                {/* <TopBar /> */}
+                <div style={{ flex: '1', overflow: 'hidden', paddingTop: '5px', paddingLeft: '0px' }}>
+                  
                   {selectedItem === null && children}
                 </div>
               </div>

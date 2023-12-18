@@ -166,7 +166,87 @@ async function getethradio(req: Request, res: Response) {
   }
 }
 
+async function bnbpan(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=14&dexer-id=1344&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+async function arbimain(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=51&dexer-id=&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function polymain(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=25&dexer-id=1567&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function pulsemain(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=189&dexer-id=7126&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function bitmain(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=189&dexer-id=7126&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 
 // Export the function
 export { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getethdefiswap, getethkyberswap,
-getethfraxswap, getethswaper };
+getethfraxswap, getethswaper, getethradio, bnbpan , arbimain, polymain,pulsemain,bitmain};
