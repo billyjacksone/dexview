@@ -1,6 +1,6 @@
 import React from 'react'
-import LightningIcon from '../public/lightning.svg'
-import { TrendingElement } from '../lib/types.common'
+import LightningIcon from '@/public/lightning.svg'
+import { TrendingElement } from '../../lib/types.common'
 import { useAppContext } from '@/lib/contexts'
 
 const Trending = () => {

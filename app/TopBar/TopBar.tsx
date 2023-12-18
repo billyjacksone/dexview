@@ -1,14 +1,3 @@
-// import React from 'react';
-
-// const TopBar: React.FC = () => {
-//   return (
-//     <div style={{ height: '50px', background: 'rgb(22, 26, 30)', paddingTop: '10px', paddingBottom: '10px', paddingLeft: '10px', paddingRight: 'var(--chakra-space-2)' }}>
-      
-//     </div>
-//   );
-// };
-
-// export default TopBar;
 import React from 'react';
 
 interface ColumnElement {
@@ -40,7 +29,7 @@ const TopBar: React.FC<TopBarProps> = ({ columnElements = [], barHeight = '30px'
       display: 'flex',
       alignItems: 'center',
       color: 'white',
-      marginTop: '20px' // Adjust the top margin here as needed
+      marginTop: '20px' 
     }}>
       {/* Create columns */}
       {columnElements.map((column, columnIndex) => (
@@ -49,7 +38,7 @@ const TopBar: React.FC<TopBarProps> = ({ columnElements = [], barHeight = '30px'
           alignItems: 'center',
           listStyleType: 'none',
           fontSize: 'var(--chakra-fontSizes-sm)',
-          margin: '0 10px' // Adjust margins between columns if needed
+          margin: '0 10px' 
         }}>
           {column.map((item, index) => (
             <div key={index} style={{ display: 'flex', alignItems: 'center', margin: '0 10px' }}>

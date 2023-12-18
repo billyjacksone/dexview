@@ -1,39 +1,7 @@
-'use client'
-// import React, { useEffect } from 'react';
-// import NavigationHeader from './NavigationHeader';
-// import Image from 'next/image';
-// import Trending from './Trending2';
-// import { useAppContext } from '@/lib/contexts';
-
-// const sampleTrendingElements = [
-//   { rank: 1, name: 'AOA', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-//   { rank: 2, name: 'IGRAIL', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-// ];
-
-// const Navigation = () => {
-//   const { setTrendingElements } = useAppContext();
-
-//   useEffect(() => {
-//     setTrendingElements(sampleTrendingElements);
-//   }, []);
-
-//   return (
-//     <>
-//       <div style={{ padding: 'var(--chakra-space-2)' }}>
-//         <Trending />
-//       </div>
-//     </>
-//   );
-// };
-
-// export default Navigation;
-
-// contexts.js
-// Your component file
 import React, { useEffect } from 'react';
 import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
-import Trending from './Trending2';
+import Trending from '../components/Trending2';
 
 const sampleTrendingElements = [
   { rank: 1, name: 'AOA', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
@@ -70,5 +38,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-

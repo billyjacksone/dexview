@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
     "@svgr/webpack": "^8.1.0",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",

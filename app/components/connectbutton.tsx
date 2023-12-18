@@ -1,6 +1,6 @@
 // components/connectbutton.tsx
 import React, { useState } from 'react';
-import MailIcon from '../public/mail.svg';
+import MailIcon from '@/public/mail.svg';
 import Image from 'next/image'; // Import Image component
 
 const ConnectElement: React.FC<{ name: string; link: string; icon?: string }> = ({ name, link, icon }) => {
