@@ -73,24 +73,20 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
-    { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
-    { icon: "/uniswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
-    { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethpan' },
-    { icon: "/uniswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
-    { icon: "/uniswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
-    { icon: "/uniswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
-    { icon: "/uniswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
-    { icon: "/uniswap.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
-    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
-    { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
-    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
-    { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethpan' },
-    { icon: "/shibaswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
-    { icon: "/defiswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
-    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
-    { icon: "/fraxswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
-    { icon: "/radioshack.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
+    { icon: "/uniswap.webp", text: 'PancakeswapV3', link: '/eth/dex/ethuniswapv3' },
+    { icon: "/uniswap.webp", text: 'Pancakeswap', link: '/eth/dex/ethuniswap' },
+    { icon: "/sushiswap.webp", text: 'Apeswap', link: '/eth/dex/ethsushiswap' },
+    { icon: "/pancakeswap.webp", text: 'BiSwap', link: '/eth/dex/ethpan' },
+    { icon: "/shibaswap.webp", text: 'MDEX', link: '/eth/dex/ethshiba' },
+    { icon: "/defiswap.webp", text: 'BabySwap', link: '/eth/dex/ethdefi' },
+    { icon: "/kyberswap.webp", text: 'FstsSwap', link: '/eth/dex/ethkyber' },
+    { icon: "/fraxswap.webp", text: 'NomiSwap', link: '/eth/dex/ethfrax' },
+    { icon: "/radioshack.webp", text: 'KyberSwap', link: '/eth/dex/ethradio' },
+    { icon: "/radioshack.webp", text: 'KnightSwap', link: '/eth/dex/ethradio' },
+    { icon: "/radioshack.webp", text: 'ConeExchange', link: '/eth/dex/ethradio' },
+    { icon: "/radioshack.webp", text: 'BakerySwap', link: '/eth/dex/ethradio' },
+    { icon: "/radioshack.webp", text: 'W3Swap', link: '/eth/dex/ethradio' },
+    { icon: "/radioshack.webp", text: 'BaryonSwap', link: '/eth/dex/ethradio' },
     // ... (other elements with links)
   ];
 
@@ -98,35 +94,37 @@ const HomePage: React.FC = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Function to handle click on "More" button
-  const hasMoreThan7Elements = () => elements.length > 9;
+  const hasMoreThan7Elements = () => elements.length > 10;
+
 
   const handleMoreClick = () => {
     setShowMore(!showMore);
   };
 
-  const remainingElements = elements.slice(9);
+  const displayedElements = showMore ? elements : elements.slice(0, 10);
 
   return (
     <div className="outer-box">
-      <table className="custom-table">
-        <tbody>
-          <tr className="table-row">
-            {elements.slice(0, 9).map((item, index) => (
-              <td key={index} className="table-cell">
-                <div className="element-box">
+    <table className="custom-table">
+      <tbody>
+        <tr className="table-row">
+          {elements.slice(0, 10).map((item, index) => (
+            <td key={index} className="table-cell">
+              <div className="element-box">
                   {item.icon && <img src={item.icon} alt="icon" className="icon" />}
                   <p>{item.text}</p>
                 </div>
               </td>
             ))}
-            <td className="table-cell">
-              <div className="more-button-box">
-                <MoreButton
-                  elements={remainingElements}
+            {elements.length > 10 && (
+              <td className="table-cell">
+                {/* <MoreButton
+                  elements={elements.slice(10)}
                   handleClick={handleMoreClick}
-                />
-              </div>
-            </td>
+                /> */}
+                 <MoreButton elements={elements} />
+              </td>
+            )}
           </tr>
         </tbody>
       </table>
@@ -167,14 +165,6 @@ const HomePage: React.FC = () => {
           max-width: 20px;
           max-height: 20px;
           margin-right: 10px;
-        }
-
-        .more-button-box {
-          position: relative;
-        }
-
-        .more-button-box .chakra-menu {
-          width: 200px;
         }
       `}</style>
     </div>

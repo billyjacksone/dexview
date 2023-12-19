@@ -197,13 +197,13 @@ const HomePage: React.FC = () => {
     { text: 'All DEXes' },
     { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
     { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
-    { icon: "/uniswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
+    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
     { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethpan' },
-    { icon: "/uniswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
-    { icon: "/uniswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
-    { icon: "/uniswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
-    { icon: "/uniswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
-    { icon: "/uniswap.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
+    { icon: "/shibaswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
+    { icon: "/defiswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
+    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
+    { icon: "/fraxswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
+    { icon: "/radioshack.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
     // ... (other elements with links)
   ];
 

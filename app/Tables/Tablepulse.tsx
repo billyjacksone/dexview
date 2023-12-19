@@ -139,8 +139,8 @@ const DataTable: React.FC = () => {
             <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: renderTextColor(item.quoteChange24h) }}>
             {Number(item.quoteChange24h).toFixed(3)}
           </td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatValue(item.liquidity)}</td>
-                <td style={{ ...tableCellStyle , ...tableCellWithBorder }}>{formatValue(item.fdv)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(formatValue(item.liquidity)).toFixed(3)}</td>
+                <td style={{ ...tableCellStyle , ...tableCellWithBorder }}>{parseFloat(formatValue(item.fdv)).toFixed(3)}</td>
               </tr>
             ))}
           </tbody>
