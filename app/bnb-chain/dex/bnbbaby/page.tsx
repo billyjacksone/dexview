@@ -1,6 +1,6 @@
 import React from 'react'
 import TopBar from '@/app/TopBar/TopBnbelements'
-import Table2 from '../Tables/Tablebnb'
+import Table2 from '@/app/Tables/Tablesbnb/bnbbaby'
 
 const page = () => {
   return (

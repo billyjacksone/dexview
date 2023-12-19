@@ -1,6 +1,6 @@
 import React from 'react'
-import TopBar from '@/app/TopBar/TopBnbelements'
-import Table2 from '../Tables/Tablebnb'
+import TopBar from '@/app/TopBar/polygonTopbar'
+import Table2 from '@/app/Tables/Tablespoly/polymmf';
 
 const page = () => {
   return (

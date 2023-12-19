@@ -73,15 +73,15 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/uniswap.webp", text: 'UniwapV3', link: '/eth/dex/ethuniswapv3' },
-    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethuniswap' },
-    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/eth/dex/ethsushiswap' },
-    { icon: "/camelot.webp", text: 'Camelot', link: '/eth/dex/ethpan' },
-    { icon: "/alien.webp", text: 'Alien', link: '/eth/dex/ethshiba' },
-    { icon: "/zyberswap.webp", text: 'Zyberswap', link: '/eth/dex/ethdefi' },
-    { icon: "/oreoswap.webp", text: 'Oreoswap', link: '/eth/dex/ethkyber' },
-    { icon: "/arbiswap.webp", text: 'ArbiSwap', link: '/eth/dex/ethfrax' },
-    { icon: "/sharkyswap.webp", text: 'SharkySwap', link: '/eth/dex/ethfrax' },
+    { icon: "/uniswap.webp", text: 'UniwapV3', link: '/arbitrum/dex/arbiuniswapv3' },
+    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/arbitrum/dex/arbisushi' },
+    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/arbitrum/dex/arbikyber' },
+    { icon: "/camelot.webp", text: 'Camelot', link: '/arbitrum/dex/arbicamelot' },
+    { icon: "/alien.webp", text: 'Alien', link: '/arbitrum/dex/arbialien' },
+    { icon: "/zyberswap.webp", text: 'Zyberswap', link: '/arbitrum/dex/arbizyber' },
+    { icon: "/oreoswap.webp", text: 'Oreoswap', link: '/arbitrum/dex/arbioreo' },
+    { icon: "/arbiswap.webp", text: 'ArbiSwap', link: '/arbitrum/dex/arbiarbi' },
+    { icon: "/sharkyswap.webp", text: 'SharkySwap', link: '/arbitrum/dex/arbisharky' },
     
     // ... (other elements with links)
   ];

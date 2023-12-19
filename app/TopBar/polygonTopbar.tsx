@@ -73,12 +73,12 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
-    { icon: "/mmfinance.webp", text: 'MMFinance', link: '/eth/dex/ethuniswap' },
-    { icon: "/quickswap.webp", text: 'Quickswap', link: '/eth/dex/ethsushiswap' },
-    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethpan' },
-    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/eth/dex/ethshiba' },
-    { icon: "/apeswap.webp", text: 'Apeswap', link: '/eth/dex/ethdefi' },
+    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/polygon/dex/polyuniswapv3' },
+    { icon: "/mmfinance.webp", text: 'MMFinance', link: '/polygon/dex/polymmf' },
+    { icon: "/quickswap.webp", text: 'Quickswap', link: '/polygon/dex/polyquickswap' },
+    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/polygon/dex/polysushi' },
+    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/polygon/dex/polykyber' },
+    { icon: "/apeswap.webp", text: 'Apeswap', link: '/polygon/dex/polyape' },
     
     // ... (other elements with links)
   ];
