@@ -1,7 +1,7 @@
 import Table from '@/app/components/Table';
 // import Table2 from'./Tables/TableEth';
-import Table2 from './components/Table';
-import TopBar from './TopBar/Topbarelements';
+import Table2 from './Tables/Tablepulse';
+import TopBar from './TopBar/pulsetopbar';
 
 export default function Home() {
   return (

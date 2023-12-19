@@ -74,7 +74,7 @@ const DataTable: React.FC = () => {
     <div className="css-1wde6zi" style={{  flex: '1 1 0%', overflow: 'vissible', width: '100%' }}>
       <div style={{ background: 'rgb(22, 26, 30)', padding: '0px', border: '1px solid #363636', overflow: 'hidden' }}>
         <table style={{ width: '100%',border: '1px solid #363636', borderCollapse: 'collapse',
-         fontSize: 'var(--chakra-fontSizes-xs)',  borderRadius: '0px' , paddingLeft: '0px', paddingTop: '10px'}}>
+         fontSize: '14px',  borderRadius: '0px' , paddingLeft: '0px', paddingTop: '10px'}}>
           <thead>
           <tr>
               <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TOKEN</th>
@@ -139,8 +139,8 @@ const DataTable: React.FC = () => {
             <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: renderTextColor(item.quoteChange24h) }}>
             {Number(item.quoteChange24h).toFixed(3)}
           </td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatValue(item.liquidity)}</td>
-                <td style={{ ...tableCellStyle , ...tableCellWithBorder }}>{formatValue(item.fdv)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(formatValue(item.liquidity)).toFixed(3)}</td>
+                <td style={{ ...tableCellStyle , ...tableCellWithBorder }}>{parseFloat(formatValue(item.fdv)).toFixed(3)}</td>
               </tr>
             ))}
           </tbody>

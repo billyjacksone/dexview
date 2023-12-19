@@ -1,5 +1,5 @@
 import React from 'react'
-import TopBar from '../TopBar/Topbarelements'
+import TopBar from '../TopBar/arbitrumTopbar'
 import Table2 from '../Tables/Tablearbitrum'
 
 const page = () => {

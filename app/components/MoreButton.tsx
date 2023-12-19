@@ -96,7 +96,7 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
     window.location.href = link;
   };
 
-  const remainingElements = elements.slice(10);
+  const remainingElements = elements.slice(11);
 
   return (
     <div className="more-button">
@@ -191,6 +191,7 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
 
         .text {
           margin: 0;
+          font-size: 14px;
         }
       `}</style>
     </div>

@@ -73,15 +73,16 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
-    { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
-    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
-    { icon: "/pancakeswap.webp", text: 'PancakeSwap', link: '/eth/dex/ethpan' },
-    { icon: "/shibaswap.webp", text: 'Shibaswap', link: '/eth/dex/ethshiba' },
-    { icon: "/defiswap.webp", text: 'Defiswap', link: '/eth/dex/ethdefi' },
-    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/eth/dex/ethkyber' },
-    { icon: "/fraxswap.webp", text: 'Fraxswap', link: '/eth/dex/ethfrax' },
-    { icon: "/radioshack.webp", text: 'Radioshack', link: '/eth/dex/ethradio' },
+    { icon: "/uniswap.webp", text: 'UniwapV3', link: '/eth/dex/ethuniswapv3' },
+    { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethuniswap' },
+    { icon: "/kyberswap.webp", text: 'Kyberswap', link: '/eth/dex/ethsushiswap' },
+    { icon: "/camelot.webp", text: 'Camelot', link: '/eth/dex/ethpan' },
+    { icon: "/alien.webp", text: 'Alien', link: '/eth/dex/ethshiba' },
+    { icon: "/zyberswap.webp", text: 'Zyberswap', link: '/eth/dex/ethdefi' },
+    { icon: "/oreoswap.webp", text: 'Oreoswap', link: '/eth/dex/ethkyber' },
+    { icon: "/arbiswap.webp", text: 'ArbiSwap', link: '/eth/dex/ethfrax' },
+    { icon: "/sharkyswap.webp", text: 'SharkySwap', link: '/eth/dex/ethfrax' },
+    
     // ... (other elements with links)
   ];
 
@@ -89,7 +90,7 @@ const HomePage: React.FC = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Function to handle click on "More" button
-  const hasMoreThan7Elements = () => elements.length > 10;
+  const hasMoreThan7Elements = () => elements.length > 11;
 
   const handleMoreClick = () => {
     setShowMore(!showMore);
@@ -100,15 +101,12 @@ const HomePage: React.FC = () => {
       <table className="custom-table">
         <tbody>
           <tr className="table-row">
-            {elements.map((item, index) => (
+            {elements.slice(0,11).map((item, index) => (
               <ListItem key={index} item={item} />
             ))}
             {hasMoreThan7Elements() && (
               <td className="table-cell">
-                <MoreButton
-                  elements={elements.slice(10)}
-                  handleClick={handleMoreClick}
-                />
+                <MoreButton elements={elements} />
               </td>
             )}
           </tr>
@@ -142,5 +140,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
-
-

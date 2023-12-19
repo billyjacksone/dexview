@@ -1,5 +1,5 @@
 import React from 'react'
-import TopBar from '../TopBar/Topbarelements'
+import TopBar from '../TopBar/pulsetopbar'
 import Table2 from '../Tables/Tablepulse'
 
 const page = () => {
