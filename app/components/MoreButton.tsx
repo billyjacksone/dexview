@@ -162,9 +162,9 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
           position: absolute;
           top: 110%;
           right: 0%;
-          background-color: #333333;
+          background-color: #2d3647;
           min-width: 200px; /* Adjust the width of the dropdown */
-          border: 1px solid #ccc;
+          // border: 1px solid #ccc;
           z-index: 1;
           border-radius: 8px;
           overflow: hidden;

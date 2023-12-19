@@ -79,7 +79,7 @@ const DataTable: React.FC = () => {
           <tr>
               <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TOKEN</th>
               <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>PRICE</th>
-              <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>AGE</th>
+              {/* <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>AGE</th> */}
               <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TXNS</th>
               <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>VOLUME</th>
               <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>6H</th>
@@ -130,9 +130,9 @@ const DataTable: React.FC = () => {
                  {Number(item.priceUsd).toFixed(4)}
                 </td>
 
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{calculateAge(item.poolCreatedDate)}</td>
+                {/* <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{calculateAge(item.poolCreatedDate)}</td> */}
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.txns24h}</td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatValue(item.volumeUsd24h)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(formatValue(item.volumeUsd24h)).toFixed(3)}</td>
                 {/* <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.quotePrice1h).toFixed(3)}</td> */}
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: renderTextColor(item.quotePrice1h) }}>
             {Number(item.quotePrice1h).toFixed(3)} </td>

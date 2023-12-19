@@ -132,7 +132,7 @@ const DataTable: React.FC = () => {
 
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{calculateAge(item.poolCreatedDate)}</td>
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.txns24h}</td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatValue(item.volumeUsd24h)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(formatValue(item.volumeUsd24h)).toFixed(3)}</td>
                 {/* <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.quotePrice1h).toFixed(3)}</td> */}
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: renderTextColor(item.quotePrice1h) }}>
             {Number(item.quotePrice1h).toFixed(3)} </td>
