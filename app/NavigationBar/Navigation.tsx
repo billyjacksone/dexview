@@ -37,9 +37,6 @@ const Navigation = () => {
           paddingInlineEnd: 'var(--chakra-space-2)',
           background: 'rgb(22, 26, 30)',
           fontSize: 'var(--chakra-fontSizes-xs)',
-          position: 'static',
-          top: '56px',
-          zIndex: '998',
           height: '48px',
         }}
       >

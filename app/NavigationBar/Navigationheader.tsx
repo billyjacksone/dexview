@@ -37,7 +37,7 @@ const Navigationheader = () => {
   return (
     <>
       <div
-        className="w-full flex h-13 bg-zinc-900 sticky top-0"
+        className="w-full flex h-13 bg-zinc-900"
         style={{
           display: 'flex',
           flexDirection: 'column',
