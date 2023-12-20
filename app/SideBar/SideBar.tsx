@@ -47,7 +47,7 @@ const SidebarListItems = [
   { name: 'Last Updated', Icon: LastUpdated, color: '#d0d1d2', link: '/last-updated' },
   { name: 'New Pairs', Icon: NewPairs, color: '#0ecb81', link: '/newpair' },
   { name: 'Etherium Mainnet', src: '/etheriumpng.png', color: '#0ecb81', link: '/eth' },
-  { name: 'Bnb Chain', src: '/bnbpng.png', color: '#0ecb81', link: '/bnb-chain' },
+  { name: 'Bnb Chain', Icon: () => <Image alt="Icon" src='/bnbpng.png' width={26} height={26} /> , color: '#0ecb81', link: '/bnb-chain' },
   { name: 'Arbiturium One', src: '/arbitrum.png', color: '#0ecb81', link: '/arbitrum' },
   { name: 'Polygon', src: '/polygon.png', color: '#d0d1d2', link: '/polygon' },
   { name: 'PulseChain', src: '/pulse.png', color: '#d0d1d2', link: '/pulse' },
@@ -71,7 +71,7 @@ const Sidebar: React.FC = () => {
       <div className="flex w-full px-1 flex-col gap-0.5" style={{ background: 'rgb(22, 26, 30)' }}>
         {SidebarListItems.map((item, index) => (
           <React.Fragment key={index}>
-            <SidebarListItem
+            {showIconsOnly ? item.Icon && <item.Icon className="w-8 h-8" /> : <SidebarListItem
               name={item.name}
               Icon={item.Icon}
               color={item.color}

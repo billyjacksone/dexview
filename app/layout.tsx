@@ -99,7 +99,7 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata, children }) => {
             <NavigationTrending />
            </div>
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '0px',position: 'sticky', left:'0px' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '0px' }}>
               <SideBar style={{ width: '300px', background: '#f0f0f0', padding: '20px', overflow: 'hidden' }} />
               <div style={{ flex: '1', display: 'flex', flexDirection: 'column', paddingLeft: '10px', paddingTop: '10px', paddingBottom: '20px' }}>
                 {/* <TopBar /> */}
