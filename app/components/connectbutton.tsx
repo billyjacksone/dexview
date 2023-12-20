@@ -60,7 +60,7 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
       {/* Second Part */}
       <div className="text-left">
-        <ConnectElement name="MetaMask" link="https://metamask.io/download/" icon="/MetaMask.svg" />
+        <ConnectElement name="MetaMask" link="https://metamask.app.link/dapp/dexview.com/" icon="/MetaMask.svg" />
         <ConnectElement name="Coinbase wallet" link="#" icon="/coinbase.svg" />
         <ConnectElement
           name="Trust Wallet"
