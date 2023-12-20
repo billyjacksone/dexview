@@ -93,12 +93,12 @@ const RootLayout: React.FC<LayoutProps> = ({ metadata, children }) => {
     <html lang="en">
       <body>
         <AppContextProvider>
-          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative'  }}>
             <NavigationHeader />
             <NavigationTrending />
 
-            <div style={{ display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '0px' }}>
-              <SideBar style={{ width: '300px', background: '#f0f0f0', padding: '20px', overflow: 'scroll' }} />
+            <div style={{ display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '0px',position: 'sticky', left:'0px' }}>
+              <SideBar style={{ width: '300px', background: '#f0f0f0', padding: '20px', overflow: 'hidden' }} />
               <div style={{ flex: '1', display: 'flex', flexDirection: 'column', paddingLeft: '10px', paddingTop: '10px', paddingBottom: '20px' }}>
                 {/* <TopBar /> */}
                 <div style={{ flex: '1', overflow: 'hidden', paddingTop: '5px', paddingLeft: '0px' }}>

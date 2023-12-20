@@ -1,6 +1,6 @@
 import React from 'react'
-import TopBar from '@/app/TopBar/shibaTopbar'
-import Table2 from '@/app/Tables/Tableshiba/shibadogswap'
+import TopBar from '@/app/TopBar/pulsetopbar'
+import Table2 from '@/app/Tables/Tablepulse/pulseXv2'
 
 const page = () => {
   return (

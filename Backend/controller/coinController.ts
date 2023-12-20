@@ -678,9 +678,73 @@ async function pulsemain(req: Request, res: Response) {
   }
 }
 
+async function pulseXv1(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=189&dexer-id=7126&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function pulseXv2(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=189&dexer-id=7342&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 async function bitmain(req: Request, res: Response) {
   try {
     const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=189&dexer-id=7126&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function shibdogswap(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=201&dexer-id=8167&sort-field=txs24h&desc=true&page=1&pageSize=50',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function shibwoofswap(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/platformpage/pair-pages?platform-id=201&dexer-id=8172&sort-field=txs24h&desc=true&page=1&pageSize=50',{
         headers: {
         },
       });
@@ -699,4 +763,6 @@ export { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getet
 getethfraxswap, getethswaper, getethradio,bnbbaryon,bnbw3,bnbbakery,bnbcone,bnbknight, bnbnomi,  bnbkyber,bnbfst,bnbbaby,bnbmedx, bnbpan ,bnbape,bnbbiswap,bnbpanv3, 
 arbimain, arbiuniswapv3,arbisushi,arbikyber,arbicamelot,arbialien,arbizyber, arbioreo, arbiarbi,arbisharky,
 polymain,polyuniswapv3,polymmf,polyquickswap,polysushi,polykyber,polyape,
-pulsemain,bitmain};
+pulsemain,pulseXv1,pulseXv2,
+bitmain,
+shibdogswap,shibwoofswap};

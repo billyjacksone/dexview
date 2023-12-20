@@ -4,7 +4,9 @@ import { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getet
   bnbbaryon,bnbw3,bnbbakery,bnbcone,bnbknight, bnbnomi,  bnbkyber,bnbfst,bnbbaby,bnbmedx, bnbpan ,bnbape,bnbbiswap,bnbpanv3, 
   arbimain, arbiuniswapv3,arbisushi,arbikyber,arbicamelot,arbialien,arbizyber, arbioreo, arbiarbi,arbisharky,
   polymain,polyuniswapv3,polymmf,polyquickswap,polysushi,polykyber,polyape,
-  pulsemain,bitmain} from '../controller/coinController';
+  pulsemain,pulseXv1,pulseXv2,
+  bitmain,
+  shibdogswap,shibwoofswap} from '../controller/coinController';
 
 
 const coinRouter: Router = express.Router();
@@ -65,7 +67,14 @@ coinRouter.get('/polyape', polyape);
 
 
 coinRouter.get('/pulsemain', pulsemain);
+coinRouter.get('/pulseXv1', pulseXv1);
+coinRouter.get('/pulseXv2', pulseXv2);
+
+
 coinRouter.get('/bitmain', bitmain);
+
+coinRouter.get('/shibdogswap', shibdogswap);
+coinRouter.get('/shibwoofswap', shibwoofswap);
 
 
 // Export the router

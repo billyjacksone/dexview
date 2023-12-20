@@ -49,7 +49,7 @@ const SidebarListItems: SidebarListItemProps[] = [
   { name: 'Advertise', Icon: Advertise, color: '#d0d1d2', link: 'https://a-ads.com/campaigns/new?selected_site_id=679718&selected_source_type=site&partner=2177768&__cf_chl_tk=.iiJ1gcK4ug1Oo7.qmqz91QiTBl0k9OTp8TIERY_pcI-1702894103-0-gaNycGzNDdA' },
   { name: 'Wallet', Icon: Wallet, color: '#d0d1d2', link: '/wallet' },
   { name: 'Last Updated', Icon: LastUpdated, color: '#d0d1d2', link: '/last-updated' },
-  { name: 'New Pairs', Icon: NewPairs, color: '#0ecb81', link: '/new-pairs' },
+  { name: 'New Pairs', Icon: NewPairs, color: '#0ecb81', link: '/newpair' },
   { name: 'Etherium Mainnet', src: '/etheriumpng.png', color: '#0ecb81', link: '/eth' },
   { name: 'Bnb Chain', src: '/bnbpng.png', color: '#0ecb81', link: '/bnb-chain' },
   { name: 'Arbiturium One', src: '/arbitrum.png', color: '#0ecb81', link: '/arbitrum' },

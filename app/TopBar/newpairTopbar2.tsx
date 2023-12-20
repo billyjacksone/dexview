@@ -73,8 +73,13 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/pulsex.webp", text: 'PulseX V1', link: '/pulse/dex/pulseXv1' },
-    { icon: "/pulsex.webp", text: 'PulseX V2', link: '/pulse/dex/pulseXv2' },
+    { icon: "/ethereum.webp", text: 'Ethereum', link: '/newpair/eth' },
+    { icon: "/bsc.webp", text: 'BNB Smart Chain', link: '/newpair/bnb' },
+    { icon: "/arbitrum.svg", text: 'Arbitrum One', link: '/newpair/arbi' },
+    { icon: "/polygon.svg", text: 'Polygon', link: '/newpair/poly' },
+    { icon: "/pulse.png", text: 'Pulse', link: '/newpair/pulse' },
+    { icon: "/brock.png", text: 'BitRock', link: '/bitrock/newpair' },
+    { icon: "/shibarium.png", text: 'Shibarium', link: '/newpair/shiba' },
     
     // ... (other elements with links)
   ];

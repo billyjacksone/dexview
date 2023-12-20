@@ -73,9 +73,20 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 const HomePage: React.FC = () => {
   const initialElements = [
     { text: 'All DEXes' },
-    { icon: "/pulsex.webp", text: 'PulseX V1', link: '/pulse/dex/pulseXv1' },
-    { icon: "/pulsex.webp", text: 'PulseX V2', link: '/pulse/dex/pulseXv2' },
-    
+    { icon: "/pancakeswap.webp", text: 'PancakeswapV3', link: '/bnb-chain/dex/bnbpanv3' },
+    { icon: "/pancakeswap.webp", text: 'Pancakeswap', link: '/bnb-chain/dex/bnbpan' },
+    { icon: "/apeswap.webp", text: 'Apeswap', link: '/bnb-chain/dex/bnbape' },
+    { icon: "/biswap.webp", text: 'BiSwap', link: '/bnb-chain/dex/bnbbiswap' },
+    { icon: "/mdex.webp", text: 'MDEX', link: '/bnb-chain/dex/bnbmedx' },
+    { icon: "/babyswap.webp", text: 'BabySwap', link: '/bnb-chain/dex/bnbbaby' },
+    { icon: "/fstswap.webp", text: 'FstsSwap', link: '/bnb-chain/dex/bnbfst' },
+    { icon: "/nomiswap.webp", text: 'NomiSwap', link: '/bnb-chain/dex/bnbnomi' },
+    { icon: "/kyberswap.webp", text: 'KyberSwap', link: '/bnb-chain/dex/bnbkyber' },
+    { icon: "/knightswap.webp", text: 'KnightSwap', link: '/bnb-chain/dex/bnbknight' },
+    { icon: "/coneexchange.webp", text: 'ConeExchange', link: '/bnb-chain/dex/bnbcone' },
+    { icon: "/bakeryswap.webp", text: 'BakerySwap', link: '/bnb-chain/dex/bnbbakery' },
+    { icon: "/w3swap.webp", text: 'W3Swap', link: '/bnb-chain/dex/bnbw3' },
+    { icon: "/baryonswap.webp", text: 'BaryonSwap', link: '/bnb-chain/dex/bnbbaryon' },
     // ... (other elements with links)
   ];
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import TopBar from '@/app/TopBar/shibaTopbar'
-import Table2 from '@/app/Tables/Tableshiba/shibadogswap'
+import Table2 from '@/app/Tables/Tableshiba/shibawoofswap'
 
 const page = () => {
   return (
