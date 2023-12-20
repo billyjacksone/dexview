@@ -67,7 +67,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <div className={`flex flex-col bg-[#1e2025] text-white w-[12%] mt-3 items-center gap-1 ${showIconsOnly ? 'max-w-[40px]' : ''}`} style={{ background: 'rgb(22, 26, 30)' }}>
+    <div className={`flex flex-col bg-[#1e2025] text-white w-[12%] mt-3 items-center gap-1 ${showIconsOnly ? 'max-w-[40px] sticky left-0' : ''}`} style={{ background: 'rgb(22, 26, 30)' }}>
       <div className={`flex w-[95%] border-b-[1px] border-[rgb(39,42,42)] py-1 items-center cursor-pointer`} onClick={handleToggleSidebar} style={{ background: 'rgb(22, 26, 30)' }}>
         <p className="flex-1 opacity-80 text-xs">Chains</p>
         <ListIn className="w-6 h-6" />
