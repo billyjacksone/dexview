@@ -758,6 +758,87 @@ async function shibwoofswap(req: Request, res: Response) {
   }
 }
 
+interface TrendingItem {
+  slug: string;
+  // Add other properties as needed
+}
+
+interface platformMap{
+  Ethereum: TrendingItem[];
+  BNB: TrendingItem[];
+  Arbitrum: TrendingItem[];
+  Polygon: TrendingItem[];
+  PulseChain: TrendingItem[];
+  Shibarium: TrendingItem[];
+}
+
+async function platformname(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/data-api/v3/cryptocurrency/spotlight?dataType=9&limit=30',{
+        headers: {
+        },
+      });
+
+    const data = response.data;
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function platform(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/data-api/v3/cryptocurrency/spotlight?dataType=9&limit=30');
+    const data = response.data.data.trendingList;
+
+    let platformMap : platformMap = {
+      Ethereum: [],
+      BNB: [],
+      Arbitrum: [],
+      Polygon: [],
+      PulseChain: [],
+      Shibarium: [],
+    };
+
+    for (const item of data) {
+      const platformName = `https://api.coinmarketcap.com/data-api/v3/cryptocurrency/market-pairs/latest?slug=${item.slug}&limit=1`;
+
+      try {
+        const platformResponse = await axios.get(platformName);
+        const platformData = platformResponse.data.data.marketPairs;
+
+        if (platformData && platformData.length > 0) {
+          const platform = platformData[0].platformName;
+
+          if (platform === 'Ethereum') {
+            platformMap.Ethereum.push(item as TrendingItem);
+          } else if (platform === 'BNB') {
+            platformMap.BNB.push(item as TrendingItem);
+          } else if (platform === 'Arbitrum') {
+            platformMap.Arbitrum.push(item as TrendingItem);
+          } else if (platform === 'Polygon') {
+            platformMap.Polygon.push(item as TrendingItem);
+          } else if (platform === 'PulseChain') {
+            platformMap.PulseChain.push(item as TrendingItem);
+          } else if (platform === 'Shibarium') {
+            platformMap.Shibarium.push(item as TrendingItem);
+          }
+        }
+      } catch (error) {
+        console.error(`Error fetching data for ${item.name}:`, error);
+      }
+    }
+
+    res.json({ data: platformMap });
+  } catch (error) {
+    console.error('Error fetching data from CoinMarketCap:', (error as AxiosError).message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
 // Export the function
 export { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getethdefiswap, getethkyberswap,
 getethfraxswap, getethswaper, getethradio,bnbbaryon,bnbw3,bnbbakery,bnbcone,bnbknight, bnbnomi,  bnbkyber,bnbfst,bnbbaby,bnbmedx, bnbpan ,bnbape,bnbbiswap,bnbpanv3, 
@@ -765,4 +846,6 @@ arbimain, arbiuniswapv3,arbisushi,arbikyber,arbicamelot,arbialien,arbizyber, arb
 polymain,polyuniswapv3,polymmf,polyquickswap,polysushi,polykyber,polyape,
 pulsemain,pulseXv1,pulseXv2,
 bitmain,
-shibdogswap,shibwoofswap};
+shibdogswap,shibwoofswap,
+platformname, platform,
+};

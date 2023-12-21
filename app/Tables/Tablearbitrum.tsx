@@ -30,6 +30,8 @@ const DataTable: React.FC = () => {
     }
   };
 
+  
+
   const renderTextColor = (value: number) => {
     return value >= 0 ? 'green' : 'red';
   };
