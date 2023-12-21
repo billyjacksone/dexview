@@ -27,12 +27,21 @@ const DarkOverlay: React.FC<{ onClose: () => void }> = ({ onClose }) => (
 
 const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   return (
+    <>
+     <DarkOverlay onClose={onClose} />
+    
     <div className="fixed top-80 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] bg-gray-800 bg-opacity-80 rounded-md justify-center text-center p-4 z-50">
       {/* Close button (cross icon) */}
       <button
-        className="absolute top-2 right-2 text-white cursor-pointer"
+        className="absolute top-2 right-2 text-white cursor-pointer bg-gray-700 border-none rounded-md p-2"
         onClick={onClose}
         aria-label="Close"
+        style={{
+          background: '#2d3748',
+          boxShadow: '0px 0px 0px 3px rgba(71, 91, 214, 0.8)',
+          borderRadius: '6px',
+          border: '2px lightblue',
+        }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,12 +50,7 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           stroke="currentColor"
           className="h-6 w-6"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
 
@@ -81,6 +85,7 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         Close
       </button> */}
     </div>
+    </>
   );
 };
 
