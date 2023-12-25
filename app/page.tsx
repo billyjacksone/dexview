@@ -1,39 +1,40 @@
-import Table from '@/app/components/Table';
-// import Table2 from'./Tables/TableEth';
+
 import Table2 from './Tables/Tablebnb';
 import TopBar from './TopBar/TopBnbelements';
+import Navigation from './NavigationBar/Navigation';
+import Sidebar from './SideBar/SideBar';
 
 export default function Home() {
   return (
-    <div style={{flex: '1', overflow: 'hidden', paddingTop: '0 px', paddingBottom: '30px'}}>
-      <TopBar />
-    <div style={{ flex: '1', overflow: 'hidden', paddingTop: '50 %', paddingLeft: '0px'}}>
-      <Table2 />
-      {/* <p>Hey</p> */}
+    <div style={{display: 'flex', overflow:'hidden',flex: '1', flexDirection: 'column'  }}>
+      <Navigation style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}/>
+      <div style={{display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '8px'}}>
+        {/* <Sidebar style={{width: '300px', background: '#f0f0f0', padding: '10px', overflow: 'hidden'}}/> */}
+        <Sidebar />
+        <div style={{flex:'1', overflow:'hidden', paddingTop: '20 px', paddingLeft: '5px'}}>
+            <TopBar />
+          <div style={{ flex: '1', overflow: 'hidden', paddingTop: '5px', paddingLeft: '8 px'}}>
+             <Table2 />
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
+    
   )
 }
 
-// pages/index.tsx
-// import React from 'react';
-// import Table from '@/app/components/Table';
-// import Link from 'next/link';
+// import Table2 from './Tables/Tablebnb';
+// import TopBar from './TopBar/TopBnbelements';
+// import Navigation from './NavigationBar/Navigation';
 
-// const HomePage: React.FC = () => {
+// export default function Home() {
 //   return (
-//     <div>
-//       <Sidebar />
-//       <div>
-//         <h1>Home Page</h1>
-//         <Link href="/eth">
-//           <p>Go to Ethereum Page</p>
-//         </Link>
-//         {/* Display content based on the current route */}
-//         <Table />
-//       </div>
+//     <div style={{flex: '1', overflow: 'hidden', paddingTop: '0 px', paddingBottom: '30px'}}>
+//       <TopBar />
+//     <div style={{ flex: '1', overflow: 'hidden', paddingTop: '4px', paddingLeft: '0px'}}>
+//       <Table2 />
+//       {/* <p>Hey</p> */}
 //     </div>
-//   );
-// };
-
-// export default HomePage;
+//     </div>
+//   )
+// }

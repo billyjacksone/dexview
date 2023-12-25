@@ -7,8 +7,9 @@ import { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getet
   pulsemain,pulseXv1,pulseXv2,
   bitmain,
   shibdogswap,shibwoofswap,
-  platform,
-  platformname} from '../controller/coinController';
+  platform,getchartvalue,
+  platformname,
+  getJUGNI, getLK, getGFR, getDAI} from '../controller/coinController';
 
 
 const coinRouter: Router = express.Router();
@@ -80,6 +81,13 @@ coinRouter.get('/shibwoofswap', shibwoofswap);
 
 coinRouter.get('/platform', platform);
 coinRouter.get('/platformname', platformname);
+
+coinRouter.get('/chartvalue', getchartvalue);
+
+coinRouter.get('/JUGNI', getJUGNI);
+coinRouter.get('/LK', getLK);
+coinRouter.get('/GFR', getGFR);
+coinRouter.get('/DAI', getDAI);
 
 
 // Export the router

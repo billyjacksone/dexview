@@ -758,6 +758,22 @@ async function shibwoofswap(req: Request, res: Response) {
   }
 }
 
+async function getchartvalue(req: Request, res: Response) {
+  try {
+    const response = await axios.get('https://api.coinmarketcap.com/dexer/v3/dexer/pair-info?dexer-platform-name=ethereum&address=0xae790e2a4785298cb18150f3dc4a60bd81fcd274&t=1703087594114',{
+        headers: {
+        },
+      });
+    const data = response.data;
+
+    res.json(data);
+  } catch (error) {
+    const e = error as AxiosError
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 interface TrendingItem {
   slug: string;
   // Add other properties as needed
@@ -814,7 +830,7 @@ async function platform(req: Request, res: Response) {
 
           if (platform === 'Ethereum') {
             platformMap.Ethereum.push(item as TrendingItem);
-          } else if (platform === 'BNB') {
+          } else if (platform === 'BSB') {
             platformMap.BNB.push(item as TrendingItem);
           } else if (platform === 'Arbitrum') {
             platformMap.Arbitrum.push(item as TrendingItem);
@@ -827,7 +843,7 @@ async function platform(req: Request, res: Response) {
           }
         }
       } catch (error) {
-        console.error(`Error fetching data for ${item.name}:`, error);
+        console.error(`Error fetching data for ${item.slug}:`, error);
       }
     }
 
@@ -839,6 +855,90 @@ async function platform(req: Request, res: Response) {
 }
 
 
+async function getJUGNI(req: Request, res: Response) {
+  try {
+    // Make multiple requests concurrently using Promise.all
+    const [response1, response2] = await Promise.all([
+      axios.get('https://api.coinmarketcap.com/dexer/v3/dexer/pair-info?dexer-platform-name=polygon&address=0x330c4e8db11fac97f981979de6d83a911c753d9e&t=1703231859640'),
+      axios.get('https://api.coinmarketcap.com/kline/v3/k-line/transactions/25/8640850?reverse-order=true'),
+    ]);
+
+    const data1 = response1.data;
+    const data2 = response2.data;
+
+    // Send the combined data as the response
+    res.json({ data1, data2 });
+  } catch (error) {
+    const e = error as AxiosError;
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function getLK(req: Request, res: Response) {
+  try {
+    // Make multiple requests concurrently using Promise.all
+    const [response1, response2] = await Promise.all([
+      axios.get('https://api.coinmarketcap.com/dexer/v3/dexer/pair-info?dexer-platform-name=polygon&address=0xd1f43b27e8a5336bf13bfea5816e498c9f515964&t=1703231960175'),
+      axios.get('https://api.coinmarketcap.com/kline/v3/k-line/transactions/25/8472792?reverse-order=true'),
+    ]);
+
+    const data1 = response1.data;
+    const data2 = response2.data;
+
+    // Send the combined data as the response
+    res.json({ data1, data2 });
+  } catch (error) {
+    const e = error as AxiosError;
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function getGFR(req: Request, res: Response) {
+  try {
+    // Make multiple requests concurrently using Promise.all
+    const [response1, response2] = await Promise.all([
+      axios.get('https://api.coinmarketcap.com/dexer/v3/dexer/pair-info?dexer-platform-name=polygon&address=0x06a00e7ebc7383a9d4261f991c357a228cfd3602&t=1703232042478'),
+      axios.get('https://api.coinmarketcap.com/kline/v3/k-line/transactions/25/8600878?reverse-order=true'),
+    ]);
+
+    const data1 = response1.data;
+    const data2 = response2.data;
+
+    // Send the combined data as the response
+    res.json({ data1, data2 });
+  } catch (error) {
+    const e = error as AxiosError;
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+async function getDAI(req: Request, res: Response) {
+  try {
+    // Make multiple requests concurrently using Promise.all
+    const [response1, response2] = await Promise.all([
+      axios.get('https://api.coinmarketcap.com/dexer/v3/dexer/pair-info?dexer-platform-name=polygon&address=0x254aa3a898071d6a2da0db11da73b02b4646078f&t=1703232213191'),
+      axios.get('https://api.coinmarketcap.com/kline/v3/k-line/transactions/25/1557387?reverse-order=false'),
+    ]);
+
+    const data1 = response1.data;
+    const data2 = response2.data;
+
+    // Send the combined data as the response
+    res.json({ data1, data2 });
+  } catch (error) {
+    const e = error as AxiosError;
+    console.error('Error fetching data from CoinMarketCap:', e.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+
+
+
 // Export the function
 export { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getethdefiswap, getethkyberswap,
 getethfraxswap, getethswaper, getethradio,bnbbaryon,bnbw3,bnbbakery,bnbcone,bnbknight, bnbnomi,  bnbkyber,bnbfst,bnbbaby,bnbmedx, bnbpan ,bnbape,bnbbiswap,bnbpanv3, 
@@ -847,5 +947,6 @@ polymain,polyuniswapv3,polymmf,polyquickswap,polysushi,polykyber,polyape,
 pulsemain,pulseXv1,pulseXv2,
 bitmain,
 shibdogswap,shibwoofswap,
-platformname, platform,
+platformname, platform,getchartvalue,
+getJUGNI,getLK,getGFR,getDAI,
 };
