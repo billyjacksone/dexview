@@ -140,7 +140,7 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         </button>
 
         <div className="mb-4 flex items-center">
-          <Logo2 className="w-6 h-6 text-white" />
+          <Logo2 />
           <a href="#" className="text-white ml-2">
             
           </a>
