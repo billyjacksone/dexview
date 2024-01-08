@@ -78,7 +78,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 
 const HomePage: React.FC = () => {
   const initialElements = [
-    { text: 'All DEXes' },
+    { text: 'All DEXes' , link: '/'},
     { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
     { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
     { icon: "/uniswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
@@ -125,14 +125,14 @@ const HomePage: React.FC = () => {
                 </div>
               </td>
             ))}
-            <td className="table-cell">
+            {/* <td className="table-cell">
               <div className="more-button-box">
                 <MoreButton
                   elements={remainingElements}
                   handleClick={handleMoreClick}
                 />
               </div>
-            </td>
+            </td> */}
           </tr>
         </tbody>
       </table>

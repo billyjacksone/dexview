@@ -78,7 +78,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 
 const HomePage: React.FC = () => {
   const initialElements = [
-    { text: 'All DEXes' },
+    { text: 'All DEXes', link: '/' },
     { icon: "/dogswap.webp", text: 'Dog Swap', link: '/shibarum/dex/dogswap' },
     { icon: "/dogswap.webp", text: 'Woof Swap', link: '/shibarum/dex/woofswap' },
     

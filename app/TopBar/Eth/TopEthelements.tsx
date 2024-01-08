@@ -5,6 +5,7 @@ import Image from 'next/image';
 
 interface ListItemProps {
   item: { icon?: string; text: string; link: string };
+  
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
@@ -78,7 +79,7 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 
 const HomePage: React.FC = () => {
   const initialElements = [
-    { text: 'All DEXes' },
+    { text: 'All DEXes' , link: '#'},
     { icon: "/uniswap.webp", text: 'UniswapV3', link: '/eth/dex/ethuniswapv3' },
     { icon: "/uniswap.webp", text: 'Uniswap', link: '/eth/dex/ethuniswap' },
     { icon: "/sushiswap.webp", text: 'Sushiswap', link: '/eth/dex/ethsushiswap' },
@@ -95,7 +96,7 @@ const HomePage: React.FC = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Function to handle click on "More" button
-  const hasMoreThan7Elements = () => elements.length > 10;
+  const hasMoreThan7Elements = () => elements.length > 11;
 
   const handleMoreClick = () => {
     setShowMore(!showMore);
@@ -109,14 +110,14 @@ const HomePage: React.FC = () => {
             {elements.map((item, index) => (
               <ListItem key={index} item={item} />
             ))}
-            {hasMoreThan7Elements() && (
+            {/* {hasMoreThan7Elements() && (
               <td className="table-cell">
                 <MoreButton
-                  elements={elements.slice(10)}
+                  elements={elements.slice(11)}
                   handleClick={handleMoreClick}
                 />
               </td>
-            )}
+            )} */}
           </tr>
         </tbody>
       </table>
