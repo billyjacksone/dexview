@@ -22,8 +22,10 @@ const DataTable: React.FC = () => {
 
   const getTokens = async () => {
     try {
-      const res: DataItem[] = await axios.get('http://localhost:8000/coins/ethsushi');
-      setTokens(res.data.data.pageList);
+      const response = await axios.get('http://localhost:8000/coins/ethsushi');
+      const data = response.data.data.pageList; 
+  
+      setTokens(data);
     } catch (error) {
       console.log(error);
     }
@@ -121,7 +123,7 @@ const DataTable: React.FC = () => {
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.priceUsd).toFixed(4)}</td>
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{calculateAge(item.poolCreatedDate)}</td>
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.txns24h}</td>
-                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(formatValue(item.volumeUsd24h)).toFixed(3)}</td>
+                <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{parseFloat(String(formatValue(item.volumeUsd24h))).toFixed(3)}</td>
                 {/* <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{Number(item.quotePrice1h).toFixed(3)}</td> */}
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: renderTextColor(item.quotePrice1h) }}>
             {Number(item.quotePrice1h).toFixed(3)} </td>

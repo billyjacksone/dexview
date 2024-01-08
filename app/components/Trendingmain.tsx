@@ -1,12 +1,10 @@
 import React from 'react';
-import LightningIcon from '@/public/lightning.svg';
-// import { TrendingItem } from '../../lib/types.common';
-import { useAppContext } from '@/lib/contexts';
 import { useRouter } from 'next/navigation';
+import LightningIcon from '@/public/lightning.svg';
+import { TrendingElement } from '../../lib/types.common';
+import { useAppContext } from '@/lib/contexts';
+import { useState } from 'react';
 
-// interface TrendingProps {
-//   trendingElements: TrendingItem[];
-// }
 
 
 
@@ -45,12 +43,12 @@ const Trending = () => {
         WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
         overflowX: 'auto',
         }}>
-        {trendingElements.map((item: TrendingItem, index: number) => (
+        {trendingElements.map((item: TrendingElement, index: number) => (
           <div className={`flex items-center gap-1 ${index < 3 ? 'text-[#ecc94b]' : 'text-white'}`} key={index} onClick={() => handleItemClick(item.name)}>
             <p className='text-sm'>
               #{item.rank}_{item.symbol}
             </p>
-            {/* Add your icon component here */}
+            {item.Icon && <item.Icon />}
           </div>
         ))}
       </div>

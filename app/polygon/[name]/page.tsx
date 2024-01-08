@@ -1,42 +1,62 @@
-
-
-
 'use client'
-// Import necessary libraries and components
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TradingView from '@/app/components/Graph';
 import Sidebar from '@/app/SideBar/SideBar';
 import Navigation from '@/app/NavigationBar/ethnavtrending';
 import { useRouter } from 'next/navigation';
-import Button from '@/app/components/Button';
+import Button from '@/app/components/connectbutton';
 
 interface DataItem {
   totalSupply: number;
   priceUsd: number;
+  address: string;
+  volume24h: string;
+  priceChange24h: string;
 }
 interface ValueItem{
+  id: number;
   type: string;
   totalQuote: string;
   priceUsd: string;
   totalUsd: string;
   txn:string;
+  time: string;
+  // address: string;
 }
 
 const Page = ({ params }: { params: { name: string } }) => {
+  const [buys, setBuys] = useState<ValueItem[]>([]);
+  const [sells, setSells] = useState<ValueItem[]>([]);
   const [token, setToken] = useState<DataItem | null>(null);
   const [value, setValue] = useState<ValueItem[]>([]);
   const [activeButton, setActiveButton] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
   const [view, setView] = useState('main'); // 'main' or 'history'
   const [showHistory, setShowHistory] = useState(false);
-  const [showyourtxs, setshowyourtxs] = useState(true);
+  const [showyourtxs, setshowyourtxs] = useState(false);
+  const [showbuyers, setShowbuyers] = useState(false);
+  const [showsellers, setShowsellers] =  useState(false);
+  const [setwallet, Showsetwallet] = useState(false);
+  const [box2Visible, setBox2Visible] = useState(false);
+  const [box3Visible, setBox3Visible] = useState(false);
   const router = useRouter();
 
   const getToken = async () => {
     try {
-      const res = await axios.get<DataItem>(`http://localhost:8000/coins/${params.name}`);
+      const res = await axios.get<{
+        data1: {
+          data: DataItem; // Assuming DataItem is the type of your actual data
+        };
+        data2: {
+          data: {
+            transactions: ValueItem[]; // Replace with the actual type of your transactions
+          };
+        };
+      }>(`http://localhost:8000/coins/${params.name}`);
+  
       const data = res.data.data1.data;
       const item = res.data.data2.data.transactions;
   
@@ -46,39 +66,110 @@ const Page = ({ params }: { params: { name: string } }) => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
-      setError(error);
+      setError(null);
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     getToken();
   }, []);
 
-  const handleButtonClick = (button) => {
-    setActiveButton(button);
-    setView('main'); // Reset the view to 'main' whenever a button is clicked
-    setShowHistory(false); // Hide the history box
+  useEffect(() => {
+    // Filter buys and sells based on txn
+    const buyTransactions = value.filter((item) => item.type === 'buy');
+    const sellTransactions = value.filter((item) => item.type === 'sell');
+
+    setBuys(buyTransactions);
+    setSells(sellTransactions);
+  }, [value]);
+
+  const calculateTotal = (transactions: ValueItem[]) => {
+    return transactions.reduce((total, transaction) => {
+      return total + parseFloat(transaction.totalUsd);
+    }, 0);
   };
 
+  const totalBought = calculateTotal(buys);
+  const totalSold = calculateTotal(sells);
+
+  const handleButtonClick = (button: string) => {
+    setActiveButton(null);
+    setView('main'); 
+    setShowHistory(false); 
+
+    setBox2Visible(button === 'Hello2');
+    setBox3Visible(button === 'Hello3');
+};
+
+
   const handleHistoryClick = () => {
-    setView('history'); // Set the view to 'history'
-    setShowHistory(true); // Show the history box
+    setView('history');
+    setShowHistory(true);
+    setshowyourtxs(false);  
+    setShowbuyers(false);  
+    setShowsellers(false); 
+    setActiveButton(null);
   };
 
   const handleTxsClick = () => {
     setView('yourtxs');
     setshowyourtxs(true);
+    setShowHistory(false);  
+    setShowbuyers(false); 
+    setShowsellers(false);  
+    setActiveButton(null);
+  }
+
+  const HandlebuyersClick = () => {
+    setView('buyers');
+    setShowbuyers(true);
+    setShowHistory(false);   
+    setshowyourtxs(false); 
+    setShowsellers(false);  
+    setActiveButton(null); 
+  }
+
+  const HandlesellerClick = () => {
+    setView('sellers');
+    setShowsellers(true);
+    setShowbuyers(false);
+    setShowHistory(false);   
+    setshowyourtxs(false);   
+    setActiveButton(null); 
+
   }
 
   const handleBackClick = () => {
-    setView('main'); // Set the view back to 'main'
-    setShowHistory(false); // Hide the history box
+    setView('main'); 
+    setShowHistory(false); 
+    setShowbuyers(false);
+    setshowyourtxs(false);  
+  };
+
+  const formatEpochTimestamp = (timestamp: number) => {
+    const date = new Date(timestamp * 1000);
+    const formattedDate = date.toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    return formattedDate;
+  };
+
+  const handleWalletClick = () => {
+    console.log('handleWalletClick Called!!');
+    setView('wallet');
+    Showsetwallet(true);  
+  };
+
+  const handleButton2Click = () => {
+    handleButtonClick('Hello2');
+  };
+
+  const handleButton3Click = () => {
+    handleButtonClick('Hello3');
   };
 
   return (
     <div style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }}>
-      <Navigation style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }} />
+      <Navigation />
       <div className='flex gap-2 w-fit flex-start' style={{ display: 'flex', paddingTop: '8px' }}>
         <Sidebar />
         <div className="flex flex-col gap-1" style={{ display: 'flex' }}>
@@ -86,20 +177,26 @@ const Page = ({ params }: { params: { name: string } }) => {
             {loading ? (
               <span>Loading...</span>
             ) : error ? (
-              <span>Error: {error}</span>
+              <span>Error: {error.message}</span>
             ) : (
               <>
                 <div>
                   <span>Total Supply: {token?.totalSupply} </span>
                   <br />
-                  <span>Price:<br /> ${token?.priceUsd}</span>
+                  <span>
+                    Price:
+                    <br />
+                    <span style={{ color: token?.priceUsd ? 'green' : 'black' }}>
+                      ${token?.priceUsd}
+                    </span>
+                  </span>
                   <br />
                   <span>Market Cap: </span>
                 </div>
               </>
             )}
           </div>
-          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px' }}>
+          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px', marginInlineEnd:'10px' }}>
             <span>Social Profile + Logo
               <a
                 href="#"
@@ -122,72 +219,112 @@ const Page = ({ params }: { params: { name: string } }) => {
             <div className='flex gap-2 '>
               <button
                 onClick={() => handleButtonClick('24H')}
-                className={`text-xs rounded-[6px] px-4 py-1 text-white ${activeButton === '24H' ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}
+                className={`text-xs rounded-[6px] px-4 py-1 text-white ${activeButton === '24H' ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
               >
                 24H
               </button>
               <button
                 onClick={() => handleButtonClick('RUG-CHECK')}
-                className={`text-xs rounded-[6px] px-4 py-1 text-white ${activeButton === 'RUG-CHECK' ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}
+                className={`text-xs rounded-[6px] px-4 py-1 text-white ${activeButton === 'RUG-CHECK' ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
               >
                 RUG_CHECK
               </button>
               <button
                 onClick={() => handleButtonClick('TOKENOMICS')}
-                className={`text-xs rounded-[6px] px-4 py-1 text-white ${activeButton === 'TOKENOMICS' ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}
+                className={`text-xs rounded-[6px] px-4 py-1 text-white ${activeButton === 'TOKENOMICS' ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
               >
                 TOKENOMICS
               </button>
               
             </div>
-            Box2
+            <div style={{ width: '290px', padding: '8px', gap: '4px',  backgroundColor: '#0f1215'}}>
+              <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
+                24h Volume: ${token?.volume24h && parseFloat(token.volume24h).toFixed(1)}
+              </span><br />
+              <div style={{ height: '1px', backgroundColor: '#0f1215', margin: '8px 0' }}></div>
+              <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
+                24h Change: {token?.priceChange24h && parseFloat(token.priceChange24h).toFixed(1)}
+              </span>
+              <div style={{ height: '1px', backgroundColor: '#0f1215', margin: '8px 0' }}></div>
+              <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
+                24H Transaction: 
+              </span>
+              <div style={{ height: '1px', backgroundColor: '#0f1215', margin: '8px 0' }}></div>
+              <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
+                ATH From Listing: 
+              </span>
+              <div style={{ height: '1px', backgroundColor: '#0f1215', margin: '8px 0' }}></div>
+              <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
+                Holders:
+              </span>
+            </div>
+
           </div>
           
-          <div className='flex flex-col' style={{ backgroundColor: '#161a1e' }}>Box4</div>
+          <div className='flex text-sm p-2 flex-col' style={{ backgroundColor: '#161a1e', width: '300px', height: '100px', color: 'white'}}>
+          <span>
+            Pair: {token?.address && `${token.address.substring(0, 3)}...${token.address.slice(-3)}`}
+          </span> 
+          <span>
+            {params.name}: {token?.address && `${token.address.substring(0, 3)}...${token.address.slice(-3)}`}
+          </span>
+            Box4
+          </div>
         </div>
         <div className='flex flex-col gap-3' style={{ backgroundColor: '#161a1e' }}>
-          <div className='p-2' style={{ backgroundColor: '#161a1e', height: '550px', width: '700px' }}>
-            Name:
+          <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '0px', width: '700px', display:'flex' }}>
+          
+          <img src="/ethereum.webp" alt="Icon" style={{ marginRight: '8px', height: '30px', width: '30px' }} /> 
+          
+           <span>{params.name}</span> <br />
+           <span style={{ color: token?.priceUsd ? 'green' : 'black' }}>
+               ${token?.priceUsd}
+           </span>
+          </div>
+            
+            <br />
+            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '700px' }}>
             <TradingView
-              symbol={(() => {
-                if (params.name === 'JUNGI') {
-                  return "QUICKSWAP:JUGNIWMATIC_330C4E";
-                }
-                if (params.name === 'LK') {
-                  return "PANCAKESWAP:LKKUSDT_D6A980";
-                }
-                if (params.name === 'GFR') {
-                  return "PANCAKESWAP:BABYGROKXWBNB_18D2BB";
-                }
-                if (params.name === 'DAI') {
-                  return "SUSHISWAPPOLYGON:DAIUSDC_CD578F";
-                }
-
-
-              })() || "MIL:1CAT"} /> 
+              symbol={
+                (() => {
+                  if (params.name === 'JUNGI') {
+                    return "QUICKSWAP:JUGNIWMATIC_330C4E";
+                  }
+                  if (params.name === 'LK') {
+                    return "PANCAKESWAP:LKKUSDT_D6A980";
+                  }
+                  if (params.name === 'GFR') {
+                    return "PANCAKESWAP:BABYGROKXWBNB_18D2BB";
+                  }
+                  if (params.name === 'DAI') {
+                    return "SUSHISWAPPOLYGON:DAIUSDC_CD578F";
+                  }
+                })() || "MIL:1CAT"
+              }
+            /> 
           </div>
           <div className='flex gap-2 p-2 py-9 ' style={{height: '100px', width:'650px'}}>
               <button
                 onClick={handleHistoryClick}
-                className={`text-sm rounded-[6px] px-4 py-1 text-white ${showHistory ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}
+                className={`text-sm rounded-[6px] px-4 py-1 text-white ${showHistory ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
               >
                 History
               </button>
               <button
                 onClick={handleTxsClick}
-                className={`text-sm rounded-[6px] px-4 py-1 text-white ${showyourtxs ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#4649f6]' : 'bg-[#161a1e] opacity-80'}`}
+                className={`text-sm rounded-[6px] px-4 py-1 text-white ${showyourtxs ? 'bg-[#f6465d] ' : 'bg-[#161a1e]'}`}
               >
                 Your TXs
               </button>
               <button
-                onClick={() => handleButtonClick('BUYERS')}
-                className={`text-sm rounded-[6px] px-4 py-1 text-white ${activeButton === 'BUYERS' ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}
+                onClick={HandlebuyersClick}
+                className={`text-sm rounded-[6px] px-4 py-1 text-white ${showbuyers ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
               >
                 Buyers
               </button>
               <button
-                onClick={() => handleButtonClick('SELLERS')}
-                className={`text-sm rounded-[6px] px-4 py-1 text-white ${activeButton === 'SELLERS' ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}
+                onClick={HandlesellerClick}
+                className={`text-sm rounded-[6px] px-4 py-1 text-white ${showsellers ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
               >
                 Sellers
               </button>
@@ -195,12 +332,13 @@ const Page = ({ params }: { params: { name: string } }) => {
             </div>
           <div className='flex flex-col' style={{ backgroundColor: '#161a1e' , width:'650px', maxHeight: '400px'}}>
             {view === 'main' && <p></p>}
+            
             {view === 'history' && (
               <>
                
                 {showHistory && (
                   <div className="flex gap-2 history-box" style={{ paddingLeft:'5px',height: '100%', width: '695px', overflowY: 'auto' }}>
-                    {/* Render your table here */}
+                    
                     <table style={{ width: '100%', borderCollapse: 'collapse', overflowY: 'auto'}}>
                     <thead>
                       <tr>
@@ -224,7 +362,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                         onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(169, 169, 169, 0.1)')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                         >
-                          <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{item.type}</td>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatEpochTimestamp(parseInt(item.time, 10))}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder,  color: item.type === 'sell' ? 'red' : 'green' }}>{capitalizeFirstLetter(item.type)}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder,  color: item.type === 'sell' ? 'red' : 'green' }}>{item.priceUsd}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder,  color: item.type === 'sell' ? 'red' : 'green' }}>{item.totalUsd}</td>
@@ -245,7 +383,7 @@ const Page = ({ params }: { params: { name: string } }) => {
               <>
                 {showyourtxs &&(
                   <div className="flex gap-2 history-box" style={{ paddingLeft:'5px',height: '100%', width: '695px' }}>
-                  {/* Render your table here */}
+                  
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr>
@@ -267,18 +405,108 @@ const Page = ({ params }: { params: { name: string } }) => {
                 )}
               </>
             )}
+
+      {view === 'buyers' && (
+              <>
+                {showbuyers && (
+                  <div className="flex gap-2 history-box" style={{ paddingLeft: '5px', height: '100%', width: '695px', overflow:'auto' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', overflow: 'auto' }}>
+                      <thead>
+                        <tr>
+                          <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>WALLET</th>
+                          <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TOTAL BOUGHT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {buys.map((item) => (
+                          <tr key={item.txn}>
+                            <td style={{ ...tableCellStyle, ...tableCellWithBorder , color: 'blue'}}>{item.txn}</td>
+                            <td style={{ ...tableCellStyle, ...tableCellWithBorder , color: 'green'}}>${parseFloat(item.totalUsd).toFixed(2)}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder, fontWeight: 'bold' }}>Total</td>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder, fontWeight: 'bold' }}>{totalBought}</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                )}
+              </>
+            )}
+
+    {view === 'sellers' && (
+            <>
+              {showsellers && (
+                <div className="flex gap-2 history-box" style={{ paddingLeft: '5px', height: '100%', width: '695px', overflow:'auto', overscrollBehavior:'hidden' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr>
+                        <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>WALLET</th>
+                        <th style={{ ...tableHeaderStyle, borderRight: '1px solid graystone500', background: '#1A1C21' }}>TOTAL SOLD</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sells.map((item) => (
+                        <tr key={item.txn}>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: 'blue' }}>{item.txn}</td>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder, color:' red' }}>${parseFloat(item.totalUsd).toFixed(2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td style={{ ...tableCellStyle, ...tableCellWithBorder, fontWeight: 'bold' }}>Total</td>
+                        <td style={{ ...tableCellStyle, ...tableCellWithBorder, fontWeight: 'bold' }}>{totalSold}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              )}
+            </>
+          )}
           </div>
         </div>
 
-        <div className='flex gap-2'>
-          {/* Button Box : Basic Button Design */}
-          <button className={`text-sm rounded-[6px] w-[75px] h-[29px] px-4 py-1 text-white ${true ? 'bg-[#f6465d] outline outline-2 outline-offset-2 outline-[#1e98f4]' : 'bg-[#161a1e] opacity-80'}`}>
-            Hello1
-          </button>
-          <button className={`text-sm rounded-[6px] text-white w-[75px] h-[29px] px-4 py-1 ${false ? 'bg-[#f6465d]' : 'bg-[#161a1e] opacity-80'}`}>
-            Hello2
-          </button>
-        </div>
+        <div className="flex  p-2 text-sm" style={{ backgroundColor: '#161a1e', display: 'flex', height: '100px', width: '300px' }}>
+        
+        <button
+          onClick={handleWalletClick}
+          className={`text-sm rounded-[6px] w-[75px] h-[29px] px-4 py-1 text-white ${setwallet ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
+        >
+          Wallet
+        </button>
+        <button
+          onClick={handleButton2Click}
+          className={`text-sm rounded-[6px] w-[75px] h-[29px] px-4 py-1 text-white ${activeButton === 'Hello2' ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
+        >
+          Starred
+        </button>
+        <button
+          onClick={handleButton3Click}
+          className={`text-sm rounded-[6px] w-[75px] h-[29px] px-4 py-1 text-white ${activeButton === 'Hello3' ? 'bg-[#f6465d] ' : 'bg-[#161a1e] opacity-80'}`}
+        >
+          History
+        </button>
+
+      </div>
+      <div className="" style={{ backgroundColor: '#ffffff', height: '500px', width: '300px' }}>
+            {
+              view === 'wallet' && (
+                <>
+                {
+                  setwallet && (
+                    <div className='flex gap-2 text-sm' style={{height: '100px', width: '300px'}}>
+                        <h1>Om om</h1>
+                    </div>
+                  )
+                }
+                </>
+              )
+            }
+      </div>
       </div>
     </div>
   );
@@ -336,3 +564,9 @@ export default Page;
              
               
               
+
+
+
+
+
+ 

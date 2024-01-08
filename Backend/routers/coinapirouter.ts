@@ -9,7 +9,10 @@ import { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getet
   shibdogswap,shibwoofswap,
   platform,getchartvalue,
   platformname,
-  getJUGNI, getLK, getGFR, getDAI, get1CAT, getHEMULE, getOGGY, getETE, getPALAI, getTAMA, getLEMON, getCHAT, getPALM, getHRZN, getBOOP, getDOWN, getCLUB, getGLORI, getARJ, getGENIE, getTEDDYBEAR, getSDAI, get9INCH, getGRAPE, getJEDI, get808, getGROOKGIRL, get$GROKOLAUS, getBABYGROK, getBABYBONK, getBABYGROKX, getBABYGRONK, getOPX, getNAZAR, getKINGGROKX, getAET, getDADA, getGROOKDOGE, getSSP, getFINC} from '../controller/coinController';
+  getJUGNI, getLK, getGFR, getDAI, get1CAT, getHEMULE, getOGGY, getETE, getPALAI, getTAMA, getLEMON, getCHAT,
+   getPALM, getHRZN, getBOOP, getDOWN, getCLUB, getGLORI, getARJ, getGENIE, getTEDDYBEAR, getSDAI, get9INCH, 
+   getGRAPE, getJEDI, get808, getGROOKGIRL, get$GROKOLAUS, getBABYGROK, getBABYBONK, getBABYGROKX, getBABYGRONK, 
+   getOPX, getNAZAR, getKINGGROKX, getAET, getDADA, getGROOKDOGE, getSSP, getFINC} from '../controller/coinController';
 
 
 const coinRouter: Router = express.Router();

@@ -16,6 +16,7 @@ interface DataItem {
   priceChange24h: string;
 }
 interface ValueItem{
+  id: number;
   type: string;
   totalQuote: string;
   priceUsd: string;
@@ -45,7 +46,17 @@ const Page = ({ params }: { params: { name: string } }) => {
 
   const getToken = async () => {
     try {
-      const res = await axios.get<DataItem>(`http://localhost:8000/coins/${params.name}`);
+      const res = await axios.get<{
+        data1: {
+          data: DataItem; // Assuming DataItem is the type of your actual data
+        };
+        data2: {
+          data: {
+            transactions: ValueItem[]; // Replace with the actual type of your transactions
+          };
+        };
+      }>(`http://localhost:8000/coins/${params.name}`);
+  
       const data = res.data.data1.data;
       const item = res.data.data2.data.transactions;
   
@@ -55,11 +66,11 @@ const Page = ({ params }: { params: { name: string } }) => {
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
-      setError(error);
+      setError(null);
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     getToken();
   }, []);
@@ -82,14 +93,15 @@ const Page = ({ params }: { params: { name: string } }) => {
   const totalBought = calculateTotal(buys);
   const totalSold = calculateTotal(sells);
 
-  const handleButtonClick = (button) => {
-    setActiveButton(button);
+  const handleButtonClick = (button: string) => {
+    setActiveButton(null);
     setView('main'); 
     setShowHistory(false); 
 
     setBox2Visible(button === 'Hello2');
     setBox3Visible(button === 'Hello3');
-  };
+};
+
 
   const handleHistoryClick = () => {
     setView('history');
@@ -157,7 +169,7 @@ const Page = ({ params }: { params: { name: string } }) => {
 
   return (
     <div style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }}>
-      <Navigation style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }} />
+      <Navigation />
       <div className='flex gap-2 w-fit flex-start' style={{ display: 'flex', paddingTop: '8px' }}>
         <Sidebar />
         <div className="flex flex-col gap-1" style={{ display: 'flex' }}>
@@ -174,7 +186,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                   <span>
                     Price:
                     <br />
-                    <span style={{ color: token?.priceUsd && parseFloat(token?.priceUsd) > 0 ? 'green' : 'black' }}>
+                    <span style={{ color: token?.priceUsd ? 'green' : 'black' }}>
                       ${token?.priceUsd}
                     </span>
                   </span>
@@ -265,7 +277,7 @@ const Page = ({ params }: { params: { name: string } }) => {
           <img src="/ethereum.webp" alt="Icon" style={{ marginRight: '8px', height: '30px', width: '30px' }} /> 
           
            <span>{params.name}</span> <br />
-           <span style={{ color: token?.priceUsd && parseFloat(token?.priceUsd) > 0 ? 'green' : 'black' }}>
+           <span style={{ color: token?.priceUsd ? 'green' : 'black' }}>
                ${token?.priceUsd}
            </span>
           </div>
@@ -369,7 +381,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                         onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(169, 169, 169, 0.1)')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                         >
-                          <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatEpochTimestamp(item.time)}</td>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder }}>{formatEpochTimestamp(parseInt(item.time, 10))}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder,  color: item.type === 'sell' ? 'red' : 'green' }}>{capitalizeFirstLetter(item.type)}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder,  color: item.type === 'sell' ? 'red' : 'green' }}>{item.priceUsd}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder,  color: item.type === 'sell' ? 'red' : 'green' }}>{item.totalUsd}</td>

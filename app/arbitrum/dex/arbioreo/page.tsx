@@ -8,7 +8,7 @@ import Sidebar from '@/app/SideBar/SideBar'
 const page = () => {
   return (
     <div style={{display: 'flex', overflow:'hidden',flex: '1', flexDirection: 'column'  }}>
-      <Navigation style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}/>
+      <Navigation />
       <div style={{display: 'flex', alignItems: 'flex-start', flex: '1', marginTop: '8px'}}>
         {/* <Sidebar style={{width: '300px', background: '#f0f0f0', padding: '10px', overflow: 'hidden'}}/> */}
         <Sidebar />
