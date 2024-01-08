@@ -12,38 +12,40 @@ const sampleTrendingElements = [
   { rank: 5, name: 'GRAPE', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
   { rank: 6, name: 'JEDI', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
   { rank: 7, name: '808', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 8, name: 'ROB', Icon: () => <Image src="/ethereum.webp" width={20} height={20} alt="aoa" /> },
-  // { rank: 9, name: '9INCH', Icon: () => <Image src="/ethereum.webp" width={20} height={20} alt="aoa" /> },
-  // { rank: 10, name: 'NOPE', Icon: () => <Image src="/ethereum.webp" width={20} height={20} alt="aoa" /> },
-  // { rank: 11, name: 'GEMINI', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 12, name: 'FTX', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 13, name: 'BABYCOQ', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 14, name: 'CXDO', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 15, name: 'AMPERE', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  
+ 
 ];
 
 interface TrendingItems {
   name: string;
 }
 
-const ethnavitrending = () => {
+const Pulsenavitrending = () => {
 
-  const [getname, setnames] = useState<TrendingItems[]>([]);
-  const getTokens = async () => {
-    try {
-      const res: TrendingItems[] = await axios.get('http://localhost:8000/coins/polymain');
-      setnames(res.data.data.trendingList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [getname, setnames] = useState([]);
 
+  // Custom hook from useAppContext
   const { setTrendingElements } = useAppContext();
 
+  // useEffect hook for fetching data
   useEffect(() => {
+    const getTokens = async () => {
+      try {
+        // Fetch data using axios
+        const res = await axios.get('http://localhost:8000/coins/polymain');
+        // Update state with fetched data
+        setnames(res.data.data.trendingList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // Call the getTokens function
+    getTokens();
+
+    // Set trending elements using the context
     setTrendingElements(sampleTrendingElements);
-  }, []);
+  }, [setTrendingElements]);
+
 
   return (
     <>
@@ -64,4 +66,4 @@ const ethnavitrending = () => {
   );
 };
 
-export default ethnavitrending;
+export default Pulsenavitrending;

@@ -140,8 +140,8 @@ const DataTable: React.FC = () => {
 };
 
 const tableHeaderStyle: React.CSSProperties = {
-  background: 'rgb(22, 26, 30)',*
-  padding: '8px',
+  background: 'rgb(22, 26, 30)',
+  padding: "8px",
   textAlign: 'left',
   whiteSpace: 'nowrap',
   overflow: 'hidden',

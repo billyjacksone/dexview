@@ -27,23 +27,33 @@ interface TrendingItems {
   name: string;
 }
 
-const ethnavitrending = () => {
+const Shibanavitrending = () => {
 
-  const [getname, setnames] = useState<TrendingItems[]>([]);
-  const getTokens = async () => {
-    try {
-      const res: TrendingItems[] = await axios.get('http://localhost:8000/coins/polymain');
-      setnames(res.data.data.trendingList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [getname, setnames] = useState([]);
 
+  // Custom hook from useAppContext
   const { setTrendingElements } = useAppContext();
 
+  // useEffect hook for fetching data
   useEffect(() => {
+    const getTokens = async () => {
+      try {
+        // Fetch data using axios
+        const res = await axios.get('http://localhost:8000/coins/polymain');
+        // Update state with fetched data
+        setnames(res.data.data.trendingList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // Call the getTokens function
+    getTokens();
+
+    // Set trending elements using the context
     setTrendingElements(sampleTrendingElements);
-  }, []);
+  }, [setTrendingElements]);
+
 
   return (
     <>
@@ -64,4 +74,4 @@ const ethnavitrending = () => {
   );
 };
 
-export default ethnavitrending;
+export default Shibanavitrending;
