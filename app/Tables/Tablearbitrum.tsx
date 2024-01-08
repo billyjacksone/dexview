@@ -21,15 +21,27 @@ interface DataItem {
 const DataTable: React.FC = () => {
   const [tokens, setTokens] = useState<DataItem[]>([]);
 
+  // const getTokens = async () => {
+  //   try {
+  //     const res: DataItem[] = await axios.get('http://localhost:8000/coins/arbimain');
+  //     setTokens(res.data.data.pageList);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+
   const getTokens = async () => {
     try {
-      const res: DataItem[] = await axios.get('http://localhost:8000/coins/arbimain');
-      setTokens(res.data.data.pageList);
+      const response = await axios.get('http://localhost:8000/coins/arbimain');
+      const data = response.data.data.pageList; 
+  
+      setTokens(data);
     } catch (error) {
       console.log(error);
     }
   };
-
+  
   
 
   const renderTextColor = (value: number) => {
