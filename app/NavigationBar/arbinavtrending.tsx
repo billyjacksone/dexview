@@ -3,17 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '../components/Trendingarbi';
+import { TrendingElement } from '@/lib/types.common';
 import axios from 'axios';
 
-const sampleTrendingElements = [
-  { rank: 1, name: 'BOOP', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  { rank: 2, name: 'DOWN', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  { rank: 3, name: 'CLUB', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  { rank: 4, name: 'GLORI', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  { rank: 5, name: 'ARJ', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  
-  
+const sampleTrendingElements: TrendingElement[] = [
+  { rank: 1, name: 'BOOP', symbol: 'BOOP', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
+  { rank: 2, name: 'DOWN', symbol: 'DOWN', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
+  { rank: 3, name: 'CLUB', symbol: 'CLUB', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
+  { rank: 4, name: 'GLORI', symbol: 'GLORI', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
+  { rank: 5, name: 'ARJ', symbol: 'ARJ', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
 ];
+
 
 interface TrendingItems {
   name: string;

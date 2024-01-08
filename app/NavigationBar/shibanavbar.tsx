@@ -4,9 +4,10 @@ import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '../components/Trendingpoly';
 import axios from 'axios';
+import { TrendingElement } from '@/lib/types.common';
 
-const sampleTrendingElements = [
-  { rank: 1, name: 'JUGNI', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
+const sampleTrendingElements:TrendingElement[]  = [
+  { rank: 1, name: 'JUGNI', symbol: 'JUNGI',Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
   
 ];
 

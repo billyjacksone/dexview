@@ -3,15 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '../components/Trendingpoly';
+import { TrendingElement } from '@/lib/types.common';
 import axios from 'axios';
 
-const sampleTrendingElements = [
-  { rank: 1, name: 'JUGNI', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
-  { rank: 2, name: 'LK', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
-  { rank: 3, name: 'GFR', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
-  { rank: 4, name: 'DAI', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
-  
+const sampleTrendingElements: TrendingElement[] = [
+  { rank: 1, name: 'JUGNI', symbol: 'JUGNI', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
+  { rank: 2, name: 'LK', symbol: 'LK', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
+  { rank: 3, name: 'GFR', symbol: 'GFR', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
+  { rank: 4, name: 'DAI', symbol: 'DAI', Icon: () => <Image src="/polygon.png" width={20} height={20} alt="aoa" /> },
 ];
+
 
 interface TrendingItems {
   name: string;

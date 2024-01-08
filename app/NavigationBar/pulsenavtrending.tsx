@@ -3,16 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '../components/Trendingpulse';
+import { TrendingElement } from '@/lib/types.common';
 import axios from 'axios';
 
-const sampleTrendingElements = [
-  { rank: 1, name: 'GENIE', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  { rank: 2, name: 'TEDDY BEAR', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  { rank: 3, name: 'SDAI', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  { rank: 4, name: '9INCH', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  { rank: 5, name: 'GRAPE', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  { rank: 6, name: 'JEDI', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
-  { rank: 7, name: '808', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+const sampleTrendingElements: TrendingElement[] = [
+  { rank: 1, name: 'GENIE',symbol:'GENIE', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+  { rank: 2, name: 'TEDDY BEAR',symbol:'TEDDY BEAR', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+  { rank: 3, name: 'SDAI', symbol:'SDAI',Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+  { rank: 4, name: '9INCH',symbol:'9INCH', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+  { rank: 5, name: 'GRAPE',symbol:'GRAPE', Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+  { rank: 6, name: 'JEDI', symbol:'JEDI',Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
+  { rank: 7, name: '808', symbol:'808',Icon: () => <Image src="/pulse.png" width={20} height={20} alt="aoa" /> },
  
 ];
 

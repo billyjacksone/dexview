@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import axios from 'axios';
 import TradingView from '@/app/components/Graph';
 import Sidebar from '@/app/SideBar/SideBar';
