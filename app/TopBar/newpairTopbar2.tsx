@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import MoreButton from '@/app/components/MoreButton';
+import Image from 'next/image';
 
 interface ListItemProps {
   item: { icon?: string; text: string; link: string };
@@ -17,11 +18,16 @@ const ListItem: React.FC<ListItemProps> = ({ item }) => {
 
   return (
     <td className="table-cell">
-      <div
+     <div
         className={`element-box ${clicked ? 'clicked' : ''}`}
         onClick={handleClick}
       >
-        {item.icon && <img src={item.icon} alt="icon" className="icon" />}
+        {item.icon && (
+          <div className="icon">
+            {/* Use Image component from next/image */}
+            <Image src={item.icon} alt="icon" width={20} height={20} />
+          </div>
+        )}
         <p>{item.text}</p>
       </div>
       <style jsx>{`

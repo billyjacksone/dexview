@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TradingView from '@/app/components/Graph';
 import Sidebar from '@/app/SideBar/SideBar';
-import Navigation from '@/app/NavigationBar/Arbinavtrending';
+import Navigation from '@/app/NavigationBar/arbinavtrending';
 import { useRouter } from 'next/navigation';
 
 interface DataItem {
