@@ -1,6 +1,6 @@
 import React from 'react';
 import LightningIcon from '@/public/lightning.svg';
-import { TrendingItem } from '../../lib/types.common';
+// import { TrendingItem } from '../../lib/types.common';
 import { useAppContext } from '@/lib/contexts';
 import { useRouter } from 'next/navigation';
 

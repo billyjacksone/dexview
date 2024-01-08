@@ -10,16 +10,7 @@ const sampleTrendingElements = [
   { rank: 3, name: 'CLUB', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
   { rank: 4, name: 'GLORI', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
   { rank: 5, name: 'ARJ', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 6, name: 'BOOP', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 7, name: 'RAISIN', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 8, name: 'AIGAMBLE', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 9, name: 'BABYCOQ', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 10, name: 'GLORI', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },
-  // { rank: 11, name: 'GEMINI', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 12, name: 'FTX', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 13, name: 'BABYCOQ', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 14, name: 'CXDO', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
-  // { rank: 15, name: 'AMPERE', Icon: () => <Image src="/aoa.svg" width={20} height={20} alt="aoa" /> },
+  
   
 ];
 
@@ -27,41 +18,51 @@ interface TrendingItems {
   name: string;
 }
 
-const ethnavitrending = () => {
+const Ethnavitrending = () => {
+  // State hook for storing trending item names
+  const [getname, setnames] = useState([]);
 
-  const [getname, setnames] = useState<TrendingItems[]>([]);
-  const getTokens = async () => {
-    try {
-      const res: TrendingItems[] = await axios.get('http://localhost:8000/coins/polymain');
-      setnames(res.data.data.trendingList);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  // Custom hook from useAppContext
   const { setTrendingElements } = useAppContext();
 
+  // useEffect hook for fetching data
   useEffect(() => {
-    setTrendingElements(sampleTrendingElements);
-  }, []);
+    const getTokens = async () => {
+      try {
+        // Fetch data using axios
+        const res = await axios.get('http://localhost:8000/coins/polymain');
+        // Update state with fetched data
+        setnames(res.data.data.trendingList);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
+    // Call the getTokens function
+    getTokens();
+
+    // Set trending elements using the context
+    setTrendingElements(sampleTrendingElements);
+  }, [setTrendingElements]);
+
+  // Return the JSX for the component
   return (
-    <>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          paddingInlineStart: 'var(--chakra-space-2)',
-          paddingInlineEnd: 'var(--chakra-space-2)',
-          background: 'rgb(22, 26, 30)',
-          fontSize: 'var(--chakra-fontSizes-xs)',
-          height: '48px',
-        }}
-      >
-        <Trending />
-      </div>
-    </>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        paddingInlineStart: 'var(--chakra-space-2)',
+        paddingInlineEnd: 'var(--chakra-space-2)',
+        background: 'rgb(22, 26, 30)',
+        fontSize: 'var(--chakra-fontSizes-xs)',
+        height: '48px',
+      }}
+    >
+      {/* Render the Trending component */}
+      <Trending />
+    </div>
   );
 };
 
-export default ethnavitrending;
+// Export the component
+export default Ethnavitrending;
