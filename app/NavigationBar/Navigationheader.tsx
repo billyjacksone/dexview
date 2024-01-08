@@ -7,9 +7,23 @@ import Button from '../components/connectbutton';
 import SearchInput from '../components/searchbar';
 import Trending from '../components/Trending2'; // Import Trending component
 import { useAppContext } from '@/lib/contexts';
+import useMetaMaskConnection from '../components/metamaskconnection';
+import Button2 from '../components/Button';
+// import  isMetaMaskConnected  from '@/app/components/connectbutton';
 
-const Navigationheader = () => {
+
+
+
+interface NavigationheaderProps {
+  isMetaMaskConnected: boolean;
+}
+
+const Navigationheader: React.FC<NavigationheaderProps> = () => {
+  const isMetaMaskConnected = useMetaMaskConnection();
+  
   const [width, setWidth] = useState(0);
+
+  // const { isMetaMaskConnected } = useAppContext();
 
   const updateWidth = () => {
     const newWidth = window.innerWidth;
@@ -29,7 +43,7 @@ const Navigationheader = () => {
   const navLinks = [
     { name: 'Docs', link: '/docs' },
     { name: 'Advertise', link: '/advertise' },
-    { name: 'New Pairs', link: '/advertise' },
+    { name: 'New Pairs', link: '/newpair' },
     { name: 'Multichart', link: '/advertise' },
     { name: 'Wallet', link: '/advertise' },
   ];
@@ -66,7 +80,13 @@ const Navigationheader = () => {
                 </li>
               ))}
             </ul>
-            <Button />
+            
+            {/* Conditionally render ConnectButton or profile button based on MetaMask connection */}
+            {isMetaMaskConnected ? (
+              <Button2 />
+            ) : (
+              <Button />
+            )}
           </div>
         </div>
       </div>

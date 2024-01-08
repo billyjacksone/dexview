@@ -9,7 +9,7 @@ import { getethuniv3,getethuniswap,getethsushi,getethpan, getethshibaswap, getet
   shibdogswap,shibwoofswap,
   platform,getchartvalue,
   platformname,
-  getJUGNI, getLK, getGFR, getDAI} from '../controller/coinController';
+  getJUGNI, getLK, getGFR, getDAI, get1CAT, getHEMULE, getOGGY, getETE, getPALAI, getTAMA, getLEMON, getCHAT, getPALM, getHRZN, getBOOP, getDOWN, getCLUB, getGLORI, getARJ, getGENIE, getTEDDYBEAR, getSDAI, get9INCH, getGRAPE, getJEDI, get808, getGROOKGIRL, get$GROKOLAUS, getBABYGROK, getBABYBONK, getBABYGROKX, getBABYGRONK, getOPX, getNAZAR, getKINGGROKX, getAET, getDADA, getGROOKDOGE, getSSP, getFINC} from '../controller/coinController';
 
 
 const coinRouter: Router = express.Router();
@@ -88,6 +88,46 @@ coinRouter.get('/JUGNI', getJUGNI);
 coinRouter.get('/LK', getLK);
 coinRouter.get('/GFR', getGFR);
 coinRouter.get('/DAI', getDAI);
+
+coinRouter.get('/1CAT', get1CAT);
+coinRouter.get('/HEMULE', getHEMULE);
+coinRouter.get('/OGGY', getOGGY);
+coinRouter.get('/ETE', getETE);
+coinRouter.get('/PALAI', getPALAI);
+coinRouter.get('/TAMA', getTAMA);
+coinRouter.get('/LEMON', getLEMON);
+coinRouter.get('/CHAT', getCHAT);
+coinRouter.get('/PALM', getPALM);
+coinRouter.get('/HRZN', getHRZN);
+
+coinRouter.get('/BOOP', getBOOP);
+coinRouter.get('/DOWN', getDOWN);
+coinRouter.get('/CLUB', getCLUB);
+coinRouter.get('/GLORI', getGLORI);
+coinRouter.get('/ARJ', getARJ);
+
+coinRouter.get('/GENIE', getGENIE);
+coinRouter.get('/TEDDY%20BEAR', getTEDDYBEAR);
+coinRouter.get('/SDAI', getSDAI);
+coinRouter.get('/9INCH', get9INCH);
+coinRouter.get('/GRAPE', getGRAPE);
+coinRouter.get('/JEDI', getJEDI);
+coinRouter.get('/808', get808);
+
+coinRouter.get('/GROOKGIRL', getGROOKGIRL);
+coinRouter.get('/$GROKOLAUS', get$GROKOLAUS);
+coinRouter.get('/BABYGROK', getBABYGROK);
+coinRouter.get('/BABYBONK', getBABYBONK);
+coinRouter.get('/BABYGROKX', getBABYGROKX);
+coinRouter.get('/BABYGRONK', getBABYGRONK);
+coinRouter.get('/OPX', getOPX);
+coinRouter.get('/NAZAR', getNAZAR);
+coinRouter.get('/KINGGROKX', getKINGGROKX);
+coinRouter.get('/AET', getAET);
+coinRouter.get('/DADA', getDADA);
+coinRouter.get('/GROOKDOGE', getGROOKDOGE);
+coinRouter.get('/SSP', getSSP);
+coinRouter.get('/FINC', getFINC);
 
 
 // Export the router

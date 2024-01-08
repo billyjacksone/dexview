@@ -11,6 +11,9 @@
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
     "@svgr/webpack": "^8.1.0",
+    "@web3-onboard/coinbase": "^2.2.6",
+    "@web3-onboard/core": "^2.21.2",
+    "@web3-onboard/injected-wallets": "^2.10.10",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

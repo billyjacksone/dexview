@@ -1,10 +1,9 @@
 'use client'
 import React, { useState } from 'react';
-import MailIcon from '@/public/profile.svg';
+import MailIcon from '@/public/mail.svg';
 import Image from 'next/image';
 import Logo2 from '../components/Logo2';
-import { ethers } from 'ethers';
-import useMetaMaskConnection from './metamaskconnection';
+
 
 
 
@@ -39,79 +38,7 @@ const DarkOverlay: React.FC<{ onClose: () => void }> = ({ onClose }) => (
 const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   // const { setMetaMaskConnected } = useMetaMask();
 
- 
 
-  // interface WalletData {
-  //   address: string;
-  //   balance: string | null;
-  // }
-  
-  // function App() {
-  //   // useState for storing and retrieving wallet details
-  //   const [data, setData] = useState<WalletData>({
-  //     address: '',
-  //     balance: null,
-  //   });
-  
-  //   // Button handler button for handling a
-  //   // request event for metamask
-  //   const btnHandler = () => {
-  //     // Asking if metamask is already present or not
-  //     if (window.ethereum) {
-  //       // res[0] for fetching a first wallet
-  //       window.ethereum
-  //         .request({ method: 'eth_requestAccounts' })
-  //         .then((res: string[]) => accountChangeHandler(res[0]))
-  //         .catch((error) => console.error('Error requesting accounts:', error));
-  //     } else {
-  //       alert('Install MetaMask extension!!');
-  //     }
-  //   };
-  
-  //   // getBalance function for getting a balance in
-  //   // a right format with the help of ethers
-  //   const getBalance = (address: string) => {
-  //     // Requesting balance method
-  //     window.ethereum
-  //       .request({
-  //         method: 'eth_getBalance',
-  //         params: [address, 'latest'],
-  //       })
-  //       .then((balance) => {
-  //         // Setting balance
-  //         setData({
-  //           ...data,
-  //           balance: ethers.utils.formatEther(balance),
-  //         });
-  //       })
-  //       .catch((error) => console.error('Error getting balance:', error));
-  //   };
-  
-  //   // Function for handling all events
-  //   const accountChangeHandler = (account: string) => {
-  //     // Setting an address data
-  //     setData({
-  //       address: account,
-  //       balance: null, // Reset balance when the address changes
-  //     });
-  
-  //     // Setting a balance
-  //     getBalance(account);
-  //   };
-  
-  //   useEffect(() => {
-  //     // Add any additional initialization or cleanup code here
-  //     // This useEffect hook will run on mount and unmount
-  //     return () => {
-  //       // Cleanup code (if needed)
-  //     };
-  //   }, []); // Empty dependency array means this effect runs only once on mount
-  
-
-  const setIsMetaMaskConnected = useMetaMaskConnection();
-  // const disconnectWallet = () => {
-  //   setIsMetaMaskConnected(false);
-  // };
    return (
     <>
       <DarkOverlay onClose={onClose} />
@@ -147,13 +74,7 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         </div>
 
         <div style={{backgroundColor: '#161a1e', height:'120px', marginBottom:'10px'}}>
-        <span>XXX</span> <br />
-        <button
-          // onClick={disconnectWallet}
-          className="text-red px-2 py-1 rounded-md transition-all "
-        >
-          Disconnect
-        </button>
+          XXX
         </div>
 
         <div className="text-left overflow-auto">
@@ -198,10 +119,11 @@ const ConnectButton: React.FC = () => {
   return (
     <div className="relative">
       <button
-        className="flex items-center justify-center rounded-full bg-zinc-800/30 w-10 h-10 text-[#FFFFFFCC] hover:bg-zinc-700 hover:border-blue-300 border hover:border-opacity-50 transition-all duration-300"
+        className="flex gap-2 items-center ml-4 rounded-md bg-zinc-800/30 px-6 py-2 text-[#FFFFFFCC]"
         onClick={handleConnectClick}
       >
-        <MailIcon className="w-6 h-6" />
+        <MailIcon />
+        Connect
       </button>
       {isConnectBoxOpen && <ConnectBox onClose={() => setIsConnectBoxOpen(false)} />}
     </div>
