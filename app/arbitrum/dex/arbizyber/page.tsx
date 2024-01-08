@@ -2,7 +2,7 @@ import React from 'react'
 import TopBar from '@/app/TopBar/arbitrumTopbar'
 import Table2 from '@/app/Tables/Tablesarbi/arbizyber'
 
-import Navigation from '@/app/NavigationBar/arbinavtrending'
+import Navigation from '@/app/NavigationBar/Arbinavtrending'
 import Sidebar from '@/app/SideBar/SideBar'
 
 const page = () => {

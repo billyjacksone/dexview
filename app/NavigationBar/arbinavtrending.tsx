@@ -18,7 +18,7 @@ interface TrendingItems {
   name: string;
 }
 
-const Ethnavitrending = () => {
+const Arbinavtrending = () => {
   // State hook for storing trending item names
   const [getname, setnames] = useState([]);
 
@@ -65,4 +65,4 @@ const Ethnavitrending = () => {
 };
 
 // Export the component
-export default Ethnavitrending;
+export default Arbinavtrending;
