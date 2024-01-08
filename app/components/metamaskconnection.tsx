@@ -8,7 +8,7 @@ interface ExtendedWindow extends Window {
 }
 
 // Update the type of the window object
-const windowWithEthereum = window as ExtendedWindow;
+const windowWithEthereum = typeof window !== 'undefined' ? window as ExtendedWindow : null;
 
 const useMetaMaskConnection = () => {
   const [isMetaMaskConnected, setIsMetaMaskConnected] = useState(false);
@@ -16,8 +16,8 @@ const useMetaMaskConnection = () => {
   useEffect(() => {
     const checkMetaMaskConnection = async () => {
       try {
-        // Check if MetaMask is installed
-        if (windowWithEthereum.ethereum) {
+        // Check if MetaMask is installed and if window is defined
+        if (windowWithEthereum && windowWithEthereum.ethereum) {
           // Request accounts to check if the user is connected
           const provider = new Web3Provider(windowWithEthereum.ethereum);
           const accounts = await provider.listAccounts();
