@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '../components/Trendingarbi';
+import axios from 'axios';
 
 const sampleTrendingElements = [
   { rank: 1, name: 'BOOP', Icon: () => <Image src="/arbitrum.png" width={20} height={20} alt="aoa" /> },

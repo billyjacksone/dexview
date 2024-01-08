@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '../components/Trendingbnb';
+import axios from 'axios';
 
 const sampleTrendingElements = [
   { rank: 1, name: 'GROOKGIRL', Icon: () => <Image src="/bnbpng.png" width={20} height={20} alt="aoa" /> },

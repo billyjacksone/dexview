@@ -4,6 +4,7 @@ import { useAppContext, AppContextProvider } from '@/lib/contexts';
 import Image from 'next/image';
 import Trending from '@/app/components/Trending2';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const sampleTrendingElements = [
   { rank: 1, name: '1CAT', Icon: () => <Image src="/ethereum.webp" width={20} height={20} alt="aoa" /> },
