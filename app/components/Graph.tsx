@@ -9,7 +9,7 @@ interface TradingViewWidgetProps {
 
 
 function TradingViewWidget({ symbol }: TradingViewWidgetProps) {
-  const container = useRef();
+  const container = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   useEffect(
