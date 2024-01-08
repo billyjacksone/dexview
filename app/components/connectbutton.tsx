@@ -5,11 +5,16 @@
 import MailIcon from '@/public/mail.svg';
 import Image from 'next/image';
 
-// Create a context to manage MetaMask connection state
-const MetaMaskContext = createContext({
+interface MetaMaskContextProps {
+  isMetaMaskConnected: boolean;
+  setMetaMaskConnected: (isConnected: boolean) => void;
+}
+
+const MetaMaskContext = createContext<MetaMaskContextProps>({
   isMetaMaskConnected: false,
-  setMetaMaskConnected: (connected) => {},
+  setMetaMaskConnected: () => {},
 });
+
 
 interface ConnectElementProps {
   name: string;
@@ -57,8 +62,8 @@ const ConnectBox: React.FC<ConnectBoxProps> = ({ onClose }) => {
 
   const connectWallet = async () => {
     try {
-      if (window.ethereum) {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      if ((window as any).ethereum) {
+        const accounts = await (window as any).ethereum.request({ method: 'eth_requestAccounts' });
         console.log('Connected account:', accounts[0]);
         setMetaMaskConnected(true);
         onClose();
@@ -69,6 +74,7 @@ const ConnectBox: React.FC<ConnectBoxProps> = ({ onClose }) => {
       console.error('Error connecting to wallet:', error);
     }
   };
+  
 
   return (
     <>
