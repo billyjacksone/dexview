@@ -94,13 +94,13 @@ const DataTable: React.FC = () => {
             {tokens.map((item, index) => (
               <tr
                 key={item.id}
-                style={{
-                  cursor: 'pointer',
-                  transition: 'background 0.3s',
-                  borderBottom: '1px solid graystone500',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(169, 169, 169, 0.1)')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+              //   style={{
+              //     cursor: 'pointer',
+              //     transition: 'background 0.3s',
+              //     borderBottom: '1px solid graystone500',
+              //   }}
+              //   onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(169, 169, 169, 0.1)')}
+              //   onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
               >
                 <td style={{ ...tableCellStyle, ...tableCellWithBorder, display: 'flex', alignItems: 'center' }}>
                   <div
