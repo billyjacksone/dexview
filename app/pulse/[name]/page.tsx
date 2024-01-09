@@ -55,7 +55,7 @@ const Page = ({ params }: { params: { name: string } }) => {
             transactions: ValueItem[]; // Replace with the actual type of your transactions
           };
         };
-      }>(`http://localhost:8000/coins/${params.name}`);
+      }>(`${process.env.NEXT_PUBLIC_APP_BACKEND_URL}/coins/${params.name}`);
   
       const data = res.data.data1.data;
       const item = res.data.data2.data.transactions;

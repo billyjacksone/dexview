@@ -23,7 +23,8 @@ const DataTable: React.FC = () => {
 
   const getTokens = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/coins/bnbpan');
+      console.log(process.env.NEXT_PUBLIC_APP_BACKEND_URL);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_BACKEND_URL}/coins/bnbpan`);
       const data = response.data.data.pageList; 
   
       setTokens(data);

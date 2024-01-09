@@ -23,7 +23,7 @@ const DataTable: React.FC = () => {
 
   const getTokens = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/coins/polymmf');
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_BACKEND_URL}/coins/polymmf`);
       const data = response.data.data.pageList; 
   
       setTokens(data);
