@@ -67,6 +67,11 @@ const ConnectBox: React.FC<ConnectBoxProps> = ({ onClose }) => {
         console.log('Connected account:', accounts[0]);
         setMetaMaskConnected(true);
         onClose();
+  
+        // Reload the page after 5 seconds
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       } else {
         alert('Install MetaMask extension!!!');
       }
