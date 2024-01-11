@@ -16,7 +16,7 @@ const Navigation = () => {
 
   const getTokens = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/coins/platformname');
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_APP_BACKEND_URL}/coins/platformname`);
       const data = response.data.data.trendingList;
 
       const fetchedTrendingItems = data.map((item: any, index: number) => ({
