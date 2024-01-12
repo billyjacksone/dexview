@@ -284,7 +284,7 @@ const Page = ({ params }: { params: { name: string } }) => {
           </div>
             
             <br />
-            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '700px' }}>
+            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '900px' }}>
             <TradingView
               symbol={
                 (() => {

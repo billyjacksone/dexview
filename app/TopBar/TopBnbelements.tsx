@@ -1,7 +1,7 @@
 
 'use client'
 import React, { useState } from 'react';
-import MoreButton from '@/app/components/MoreButton';
+// import MoreButton from '@/app/components/MoreButton';
 import Image from 'next/image';
 
 interface ListItemProps {
@@ -115,11 +115,11 @@ const HomePage: React.FC = () => {
             {elements.slice(0,14).map((item, index) => (
               <ListItem key={index} item={item} />
             ))}
-            {hasMoreThan7Elements() && (
+            {/* {hasMoreThan7Elements() && (
               <td className="table-cell">
                 <MoreButton elements={elements} />
               </td>
-            )}
+            )} */}
           </tr>
         </tbody>
       </table>

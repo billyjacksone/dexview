@@ -32,7 +32,7 @@ const Navigation = () => {
   };
 
   useEffect(() => {
-    // Add getTokens to the dependency array
+    
     getTokens();
   }, [setTrendingElements, getTokens]);
 

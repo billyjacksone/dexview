@@ -24,6 +24,13 @@ const Trending = () => {
           .trending-scroll::-webkit-scrollbar {
             display: none;
           }
+
+          /* Add hover effect and change cursor */
+          .trending-item {
+            cursor: pointer;
+          }
+
+          
         `}
       </style>
       <div className='flex gap-2 items-center'>
@@ -32,7 +39,11 @@ const Trending = () => {
       </div>
       <div className='flex gap-8 items-center trending-scroll' style={{ WebkitOverflowScrolling: 'touch', overflowX: 'auto' }}>
         {trendingElements.map((item: TrendingElement, index: number) => (
-          <div className={`flex items-center gap-1 ${index < 3 ? 'text-[#ecc94b]' : 'text-white'}`} key={index} onClick={() => handleItemClick(item.name)}>
+          <div
+            className={`flex items-center gap-1 ${index < 3 ? 'text-[#ecc94b]' : 'text-white'} trending-item`}
+            key={index}
+            onClick={() => handleItemClick(item.name)}
+          >
             <p className='text-sm'>
               #{item.rank}_{item.name}
             </p>
@@ -49,9 +60,3 @@ const Trending = () => {
 };
 
 export default Trending;
-
-
-
-
-
-

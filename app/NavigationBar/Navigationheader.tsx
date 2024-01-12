@@ -41,11 +41,11 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Docs', link: '/docs' },
-    { name: 'Advertise', link: '/advertise' },
+    { name: 'Docs', link: '/' },
+    { name: 'Advertise', link: '/' },
     { name: 'New Pairs', link: '/newpair' },
-    { name: 'Multichart', link: '/advertise' },
-    { name: 'Wallet', link: '/advertise' },
+    { name: 'Multichart', link: '/' },
+    { name: 'Wallet', link: '/' },
   ];
 
   return (
