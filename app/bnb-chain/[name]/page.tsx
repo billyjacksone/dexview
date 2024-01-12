@@ -522,7 +522,7 @@ const Page = ({ params }: { params: { name: string } }) => {
         </button>
 
       </div>
-      <div className="" style={{ backgroundColor: '#ffffff', height: '500px', width: '300px' }}>
+      {/* <div className="" style={{ backgroundColor: '#ffffff', height: '500px', width: '300px' }}>
             {
               view === 'wallet' && (
                 <>
@@ -536,7 +536,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                 </>
               )
             }
-      </div>
+      </div> */}
       </div>
     </div>
   );

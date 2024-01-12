@@ -101,7 +101,7 @@ const HomePage: React.FC = () => {
   const [showMore, setShowMore] = useState(false);
 
   // Function to handle click on "More" button
-  const hasMoreThan7Elements = () => elements.length > 11;
+  const hasMoreThan7Elements = () => elements.length > 14;
 
   const handleMoreClick = () => {
     setShowMore(!showMore);
@@ -112,7 +112,7 @@ const HomePage: React.FC = () => {
       <table className="custom-table">
         <tbody>
           <tr className="table-row">
-            {elements.slice(0,11).map((item, index) => (
+            {elements.slice(0,14).map((item, index) => (
               <ListItem key={index} item={item} />
             ))}
             {hasMoreThan7Elements() && (
@@ -151,5 +151,6 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
 
 

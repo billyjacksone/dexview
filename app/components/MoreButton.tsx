@@ -12,7 +12,7 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
     window.location.href = link;
   };
 
-  const remainingElements = elements.slice(11);
+  const remainingElements = elements.slice(14);
 
   return (
     <div className="more-button">

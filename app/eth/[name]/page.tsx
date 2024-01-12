@@ -238,10 +238,10 @@ const Page = ({ params }: { params: { name: string } }) => {
               </button>
               
             </div>
-            <div style={{ width: '290px', padding: '8px', gap: '4px',  backgroundColor: '#0f1215'}}>
+            <div style={{ width: '280px', padding: '8px', gap: '4px',  backgroundColor: '#0f1215'}}>
               <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
                 24h Volume: ${token?.volume24h && parseFloat(token.volume24h).toFixed(1)}
-              </span><br />
+              </span>
               <div style={{ height: '1px', backgroundColor: '#0f1215', margin: '8px 0' }}></div>
               <span style={{ fontSize: '14px', color: '#FFFFFFCC' }}>
                 24h Change: {token?.priceChange24h && parseFloat(token.priceChange24h).toFixed(1)}
@@ -512,7 +512,7 @@ const Page = ({ params }: { params: { name: string } }) => {
         </button>
 
       </div>
-      <div className="" style={{ backgroundColor: '#ffffff', height: '500px', width: '300px' }}>
+      {/* <div className="" style={{ backgroundColor: '#ffffff', height: '500px', width: '300px' }}>
             {
               view === 'wallet' && (
                 <>
@@ -526,7 +526,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                 </>
               )
             }
-      </div>
+      </div> */}
       </div>
     </div>
   );

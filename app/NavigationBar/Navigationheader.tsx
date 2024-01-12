@@ -7,9 +7,9 @@ import Button from '../components/connectbutton';
 import SearchInput from '../components/searchbar';
 import Trending from '../components/Trending2'; // Import Trending component
 import { useAppContext } from '@/lib/contexts';
-import useMetaMaskConnection from '../components/metamaskconnection';
+import useMetaMaskConnection from '../components/meta';
 import Button2 from '../components/Button';
-// import  isMetaMaskConnected  from '@/app/components/connectbutton';
+
 
 
 
