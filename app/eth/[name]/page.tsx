@@ -169,12 +169,12 @@ const Page = ({ params }: { params: { name: string } }) => {
   };
 
   return (
-    <div style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }}>
+    <div className="flex flex-col md:flex-row min-h-screen" style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }}>
       <Navigation />
       <div className='flex gap-2 w-fit flex-start' style={{ display: 'flex', paddingTop: '8px' }}>
         <Sidebar />
         <div className="flex flex-col gap-1" style={{ display: 'flex' }}>
-          <div className="flex flex-col p-2 text-sm" style={{ backgroundColor: '#161a1e', display: 'flex', height: '100px', width: '300px' }}>
+          <div className="md:w-4/5 flex flex-col gap-3 p-4" style={{ backgroundColor: '#161a1e', display: 'flex', height: '100px', width: '300px' }}>
             {loading ? (
               <span>Loading...</span>
             ) : error ? (
@@ -284,7 +284,7 @@ const Page = ({ params }: { params: { name: string } }) => {
           </div>
             
             <br />
-            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '900px' }}>
+            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '700px' }}>
             <TradingView
               symbol={
                 (() => {
