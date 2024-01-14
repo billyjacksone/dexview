@@ -46,7 +46,28 @@ const DarkOverlay: React.FC<{ onClose: () => void }> = ({ onClose }) => (
 const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const { disconnectWallet, account } = useMetaMaskConnection();
   const [accountBalance, setAccountBalance] = useState<string | null>(null);
+  const [copySuccess, setCopySuccess] = useState(false);
+  
+  const copyToClipboard = () => {
+    const el = document.createElement('textarea');
+    el.value = account || '';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+  };
 
+  // Function to handle copy success
+  const handleCopyClick = () => {
+    copyToClipboard();
+    setCopySuccess(true);
+
+    // Reset copySuccess after 3 seconds
+    setTimeout(() => {
+      setCopySuccess(false);
+    }, 3000);
+  };
+  
   // Function to fetch account balance
   const fetchAccountBalance = async () => {
     if (account) {
@@ -104,13 +125,18 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         <div style={{ backgroundColor: '#161a1e', height: '100px', marginBottom: '10px', padding: '6px' }}>
         {account && (
             <div>
-              {`${account.substring(0, 15)}...${account.slice(-8)}`}
-              <br /><br />
+              <p>
+                Account: {`${account.substring(0, 9)}...${account.slice(-4)}`}
+                <button onClick={handleCopyClick} className="bg-blue-500 text-white px-1 py-1 rounded-md text-sm ml-2">
+                  Copy
+                </button>
+                {copySuccess && <span className="text-green-500 ml-2">Copied!  </span>}
+              </p>
               {accountBalance && (
                 <p>
-                Balance: {' '}
-                <span className="text-green-500">{accountBalance} ETH</span>
-              </p>
+                  Balance: {' '}
+                  <span className="text-green-500">{parseFloat(accountBalance).toFixed(3)} ETH</span>
+                </p>
               )}
             </div>
           )}

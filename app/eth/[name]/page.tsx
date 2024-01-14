@@ -192,12 +192,12 @@ const Page = ({ params }: { params: { name: string } }) => {
                     </span>
                   </span>
                   <br />
-                  <span>Market Cap: </span>
+                  {/* <span>Market Cap: </span> */}
                 </div>
               </>
             )}
           </div>
-          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px', marginInlineEnd:'10px' }}>
+          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px' }}>
             <span>Social Profile + Logo
               <a
                 href="#"
@@ -284,7 +284,7 @@ const Page = ({ params }: { params: { name: string } }) => {
           </div>
             
             <br />
-            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '700px' }}>
+            <div className='p-2' style={{ backgroundColor: '#161a1e', height: '550px', width: '750px' }}>
             <TradingView
               symbol={
                 (() => {
