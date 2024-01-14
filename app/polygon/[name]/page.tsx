@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TradingView from '@/app/components/Graph';
 import Sidebar from '@/app/SideBar/SideBar';
-import Navigation from '@/app/NavigationBar/ethnavtrending';
+import Navigation from '@/app/NavigationBar/polynavtrending';
 import { useRouter } from 'next/navigation';
 import Button from '@/app/components/connectbutton';
 
@@ -196,7 +196,7 @@ const Page = ({ params }: { params: { name: string } }) => {
               </>
             )}
           </div>
-          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px', marginInlineEnd:'10px' }}>
+          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px' }}>
             <span>Social Profile + Logo
               <a
                 href="#"
@@ -283,7 +283,7 @@ const Page = ({ params }: { params: { name: string } }) => {
           </div>
             
             <br />
-            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '700px' }}>
+            <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '550px', width: '750px' }}>
             <TradingView
               symbol={
                 (() => {
@@ -337,7 +337,7 @@ const Page = ({ params }: { params: { name: string } }) => {
               <>
                
                 {showHistory && (
-                  <div className="flex gap-2 history-box" style={{ paddingLeft:'5px',height: '100%', width: '695px', overflowY: 'auto' }}>
+                  <div className="flex gap-2 history-box" style={{ paddingLeft:'5px',height: '100%', width: '745px', overflowY: 'auto' }}>
                     
                     <table style={{ width: '100%', borderCollapse: 'collapse', overflowY: 'auto'}}>
                     <thead>
@@ -382,7 +382,7 @@ const Page = ({ params }: { params: { name: string } }) => {
             {view === 'yourtxs' && (
               <>
                 {showyourtxs &&(
-                  <div className="flex gap-2 history-box" style={{ paddingLeft:'5px',height: '100%', width: '695px' }}>
+                  <div className="flex gap-2 history-box" style={{ paddingLeft:'5px',height: '100%', width: '745px' }}>
                   
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
@@ -409,7 +409,7 @@ const Page = ({ params }: { params: { name: string } }) => {
       {view === 'buyers' && (
               <>
                 {showbuyers && (
-                  <div className="flex gap-2 history-box" style={{ paddingLeft: '5px', height: '100%', width: '695px', overflow:'auto' }}>
+                  <div className="flex gap-2 history-box" style={{ paddingLeft: '5px', height: '100%', width: '745px', overflow:'auto' }}>
                     <table style={{ width: '100%', borderCollapse: 'collapse', overflow: 'auto' }}>
                       <thead>
                         <tr>
@@ -420,7 +420,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                       <tbody>
                         {buys.map((item) => (
                           <tr key={item.txn}>
-                            <td style={{ ...tableCellStyle, ...tableCellWithBorder , color: 'blue'}}>{item.txn}</td>
+                            <td style={{ ...tableCellStyle, ...tableCellWithBorder , color: 'lightblue'}}>{item.txn}</td>
                             <td style={{ ...tableCellStyle, ...tableCellWithBorder , color: 'green'}}>${parseFloat(item.totalUsd).toFixed(2)}</td>
                           </tr>
                         ))}
@@ -440,7 +440,7 @@ const Page = ({ params }: { params: { name: string } }) => {
     {view === 'sellers' && (
             <>
               {showsellers && (
-                <div className="flex gap-2 history-box" style={{ paddingLeft: '5px', height: '100%', width: '695px', overflow:'auto', overscrollBehavior:'hidden' }}>
+                <div className="flex gap-2 history-box" style={{ paddingLeft: '5px', height: '100%', width: '745px', overflow:'auto', overscrollBehavior:'hidden' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead>
                       <tr>
@@ -451,7 +451,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                     <tbody>
                       {sells.map((item) => (
                         <tr key={item.txn}>
-                          <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: 'blue' }}>{item.txn}</td>
+                          <td style={{ ...tableCellStyle, ...tableCellWithBorder, color: 'lightblue' }}>{item.txn}</td>
                           <td style={{ ...tableCellStyle, ...tableCellWithBorder, color:' red' }}>${parseFloat(item.totalUsd).toFixed(2)}</td>
                         </tr>
                       ))}
