@@ -174,7 +174,7 @@ const Page = ({ params }: { params: { name: string } }) => {
       <div className='flex gap-2 w-fit flex-start' style={{ display: 'flex', paddingTop: '8px' }}>
         <Sidebar />
         <div className="flex flex-col gap-1" style={{ display: 'flex' }}>
-          <div className="md:w-4/5 flex flex-col gap-3 p-4" style={{ backgroundColor: '#161a1e', display: 'flex', height: '100px', width: '300px' }}>
+          <div className="md:w-4/5 flex flex-col gap-3 p-3" style={{ backgroundColor: '#161a1e', display: 'flex', height: '125px', width: '300px' }}>
             {loading ? (
               <span>Loading...</span>
             ) : error ? (
@@ -182,7 +182,7 @@ const Page = ({ params }: { params: { name: string } }) => {
             ) : (
               <>
                 <div>
-                  <span>Total Supply: {token?.totalSupply} </span>
+                  <span>Total Supply: {token?.totalSupply} </span><br />
                   <br />
                   <span>
                     Price:
@@ -197,7 +197,7 @@ const Page = ({ params }: { params: { name: string } }) => {
               </>
             )}
           </div>
-          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px' }}>
+          <div className='flex flex-col text-sm p-2' style={{ backgroundColor: '#161a1e', width: '300px', height: '280px' }}>
             <span>Social Profile + Logo
               <a
                 href="#"
@@ -206,7 +206,7 @@ const Page = ({ params }: { params: { name: string } }) => {
               >
                 Edit
               </a>
-            </span>
+            </span> <br />
             <span>
               <a
                 href="/200"
@@ -264,23 +264,25 @@ const Page = ({ params }: { params: { name: string } }) => {
           
           <div className='flex text-sm p-2 flex-col' style={{ backgroundColor: '#161a1e', width: '300px', height: '100px', color: 'white'}}>
           <span>
-            Pair: {token?.address && `${token.address.substring(0, 3)}...${token.address.slice(-3)}`}
-          </span> 
+            Pair: {token?.address && `${token.address.substring(0, 7)}...${token.address.slice(-7)}`}
+          </span> <br />
           <span>
-            {params.name}: {token?.address && `${token.address.substring(0, 3)}...${token.address.slice(-3)}`}
-          </span>
-            Box4
+            {params.name}: {token?.address && `${token.address.substring(0, 7)}...${token.address.slice(-7)}`}
+          </span><br />
+            
           </div>
         </div>
         <div className='flex flex-col gap-3' style={{ backgroundColor: '#161a1e' }}>
           <div className='p-2 ' style={{ backgroundColor: '#161a1e', height: '0px', width: '700px', display:'flex' }}>
           
           <img src="/ethereum.webp" alt="Icon" style={{ marginRight: '8px', height: '30px', width: '30px' }} /> 
-          
-           <span>{params.name}</span> <br />
+          <div>
+           <span>{params.name}</span>
+           <br />
            <span style={{ color: token?.priceUsd ? 'green' : 'black' }}>
-               ${token?.priceUsd}
+             ${token?.priceUsd}
            </span>
+           </div>
           </div>
             
             <br />
