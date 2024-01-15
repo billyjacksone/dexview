@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "Backend/routers/coinapirouter.ts", "Backend/index.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "dexview_server/routers/coinapirouter.ts", "dexview_server/index.ts"],
   "exclude": ["node_modules"]
 }
