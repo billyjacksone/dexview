@@ -171,7 +171,7 @@ const Page = ({ params }: { params: { name: string } }) => {
   return (
     <div className="flex flex-col md:flex-row min-h-screen" style={{ display: 'flex', overflow: 'hidden', flex: '1', flexDirection: 'column' }}>
       <Navigation />
-      <div className='flex gap-2 w-fit flex-start' style={{ display: 'flex', paddingTop: '8px' }}>
+      <div className='flex gap-2 w-full md:w-auto flex-start' style={{ display: 'flex', paddingTop: '8px' }}>
         <Sidebar />
         <div className="flex flex-col gap-1" style={{ display: 'flex' }}>
           <div className="md:w-4/5 flex flex-col gap-3 p-3" style={{ backgroundColor: '#161a1e', display: 'flex', height: '125px', width: '300px' }}>
@@ -186,6 +186,7 @@ const Page = ({ params }: { params: { name: string } }) => {
                   <br />
                   <span>
                     Price:
+                    
                     <br />
                     <span style={{ color: token?.priceUsd ? 'green' : 'black' }}>
                       ${token?.priceUsd}
