@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: string }[] }> = ({ elements }) => {
+interface MoreButtonProps {
+  elements: { text?: string; link: string; icon?: string }[];
+}
+
+const MoreButton: React.FC<MoreButtonProps> = ({ elements }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleButtonClick = () => {
@@ -12,8 +16,6 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
     window.location.href = link;
   };
 
-  const remainingElements = elements.slice(14);
-
   return (
     <div className="more-button">
       <button onClick={handleButtonClick}>
@@ -22,7 +24,7 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
       </button>
       {isDropdownOpen && (
         <div className="dropdown">
-          {remainingElements.map((item, index) => (
+          {elements.map((item, index) => (
             <div
               key={index}
               className="dropdown-item"
@@ -68,7 +70,6 @@ const MoreButton: React.FC<{ elements: { text: string; link: string; icon?: stri
           border-color: white transparent transparent;
           transition: transform 0.3s;
         }
-        
 
         .up {
           transform: translateY(-50%) rotateX(180deg);

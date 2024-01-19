@@ -9,6 +9,7 @@ import Trending from '../components/Trending2'; // Import Trending component
 import { useAppContext } from '@/lib/contexts';
 import useMetaMaskConnection from '../components/meta';
 import Button2 from '../components/Button';
+import Button3 from '../components/Button3';
 
 
 
@@ -48,6 +49,16 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
     { name: 'Wallet', link: '/' },
   ];
 
+  const renderConnectButton = () => {
+    // Conditionally render ConnectButton or profile button based on MetaMask connection
+    return isMetaMaskConnected ? <Button2 /> : <Button />;
+  };
+
+  const renderMobileButton = () => {
+    // Conditionally render another button for mobile view
+    return <Button3 />;
+  };
+
   return (
     <>
       <div
@@ -65,7 +76,7 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
           alignItems: 'center',
         }}
       >
-        <div className="flex justify-start items-center h-full w-full">
+         <div className="flex justify-start items-center h-full w-full">
           <div className="flex gap-3 items-center h-full w-full px-3">
             <Logo />
             <SearchInput />
@@ -80,13 +91,9 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
                 </li>
               ))}
             </ul>
-            
+
             {/* Conditionally render ConnectButton or profile button based on MetaMask connection */}
-            {isMetaMaskConnected ? (
-              <Button2 />
-            ) : (
-              <Button />
-            )}
+            {width > 768 ? renderConnectButton() : renderMobileButton()}
           </div>
         </div>
       </div>

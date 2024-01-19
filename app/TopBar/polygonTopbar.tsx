@@ -1,30 +1,24 @@
 'use client'
-import React, { useState } from 'react';
-import MoreButton from '@/app/components/MoreButton';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import MoreButton from '@/app/components/MoreButton'; // Import the MoreButton component
 
 interface ListItemProps {
   item: { icon?: string; text: string; link: string };
+  
 }
 
 const ListItem: React.FC<ListItemProps> = ({ item }) => {
-  const [clicked, setClicked] = useState(false);
-
   const handleClick = () => {
     // Redirect to the specified link
     window.location.href = item.link;
-    setClicked(!clicked);
   };
 
   return (
     <td className="table-cell">
-      <div
-        className={`element-box ${clicked ? 'clicked' : ''}`}
-        onClick={handleClick}
-      >
+      <div className="element-box" onClick={handleClick}>
         {item.icon && (
           <div className="icon">
-            {/* Use Image component from next/image */}
             <Image src={item.icon} alt="icon" width={20} height={20} />
           </div>
         )}
@@ -90,26 +84,35 @@ const HomePage: React.FC = () => {
   ];
 
   const [elements, setElements] = useState(initialElements);
-  const [showMore, setShowMore] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [showAllElements, setShowAllElements] = useState(false);
 
-  // Function to handle click on "More" button
-  const hasMoreThan7Elements = () => elements.length > 11;
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
-  const handleMoreClick = () => {
-    setShowMore(!showMore);
-  };
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const displayElements = isMobile ? (showAllElements ? elements : elements.slice(0, 3)) : elements;
 
   return (
     <div className="outer-box">
       <table className="custom-table">
         <tbody>
           <tr className="table-row">
-            {elements.slice(0,11).map((item, index) => (
+            {displayElements.map((item, index) => (
               <ListItem key={index} item={item} />
             ))}
-            {hasMoreThan7Elements() && (
+            {isMobile && elements.length > 3 && (
               <td className="table-cell">
-                <MoreButton elements={elements} />
+                <MoreButton elements={elements.slice(3)}  />
               </td>
             )}
           </tr>
