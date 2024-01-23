@@ -263,7 +263,7 @@ const HomePage: React.FC = () => {
     };
   }, []);
 
-  const displayElements = isMobile ? (showAllElements ? elements : elements.slice(0, 3)) : elements;
+  const displayElements = isMobile ? (showAllElements ? elements : elements.slice(0, 2)) : elements;
 
   return (
     <div className="outer-box">

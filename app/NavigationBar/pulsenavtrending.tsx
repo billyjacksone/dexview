@@ -33,7 +33,7 @@ const Pulsenavitrending = () => {
     const getTokens = async () => {
       try {
         // Fetch data using axios
-        const res = await axios.get('http://localhost:8000/coins/polymain');
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_APP_BACKEND_URL}/coins/polymain`);
         // Update state with fetched data
         setnames(res.data.data.trendingList);
       } catch (error) {

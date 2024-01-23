@@ -81,7 +81,7 @@ const ConnectBox: React.FC<ConnectBoxProps> = ({ onClose }) => {
     <>
       <DarkOverlay onClose={onClose} />
 
-      <div className="fixed top-80 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] bg-gray-800 bg-opacity-80 rounded-md justify-center text-center p-4 z-50">
+      <div className="fixed top-80 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[500px] bg-gray-800 bg-opacity-80 rounded-md justify-center text-center p-4 z-50">
         <button
           className="absolute top-2 right-2 text-white cursor-pointer bg-gray-700 border-none rounded-md p-2"
           onClick={onClose}

@@ -10,6 +10,7 @@ import { useAppContext } from '@/lib/contexts';
 import useMetaMaskConnection from '../components/meta';
 import Button2 from '../components/Button';
 import Button3 from '../components/Button3';
+import MobileLogo from '../components/Mobilebutton';
 
 
 
@@ -59,6 +60,11 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
     return <Button3 />;
   };
 
+  const renderLogo = () => {
+    // Conditionally render different logos based on screen width
+    return width > 768 ? <Logo /> : <MobileLogo />;
+  };
+
   return (
     <>
       <div
@@ -78,7 +84,7 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
       >
          <div className="flex justify-start items-center h-full w-full">
           <div className="flex gap-3 items-center h-full w-full px-3">
-            <Logo />
+          {renderLogo()}
             <SearchInput />
             <ul className="hidden md:flex gap-x-8 text-white">
               {navLinks.map((link) => (
