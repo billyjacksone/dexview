@@ -56,12 +56,10 @@ const Navigationheader: React.FC<NavigationheaderProps> = () => {
   };
 
   const renderMobileButton = () => {
-    // Conditionally render another button for mobile view
     return <Button3 />;
   };
 
   const renderLogo = () => {
-    // Conditionally render different logos based on screen width
     return width > 768 ? <Logo /> : <MobileLogo />;
   };
 

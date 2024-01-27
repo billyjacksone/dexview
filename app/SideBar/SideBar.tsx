@@ -71,8 +71,8 @@ const SidebarListItems = [
     link:
       'https://a-ads.com/campaigns/new?selected_site_id=679718&selected_source_type=site&partner=2177768&__cf_chl_tk=.iiJ1gcK4ug1Oo7.qmqz91QiTBl0k9OTp8TIERY_pcI-1702894103-0-gaNycGzNDdA',
   },
-  { name: 'Wallet', Icon: Wallet, color: '#d0d1d2', link: '/wallet' },
-  { name: 'Last Updated', Icon: LastUpdated, color: '#d0d1d2', link: '/last-updated' },
+  { name: 'Wallet', Icon: Wallet, color: '#d0d1d2', link: '/' },
+  { name: 'Last Updated', Icon: LastUpdated, color: '#d0d1d2', link: '/' },
   { name: 'New Pairs', Icon: NewPairs, color: '#0ecb81', link: '/newpair' },
   { name: 'Etherium Mainnet', src: '/etheriumpng.png', color: '#0ecb81', link: '/eth' },
   { name: 'Bnb Chain', Icon: () => <Image alt="Icon" src="/bnbpng.png" width={26} height={26} />, color: '#0ecb81', link: '/bnb-chain' },
