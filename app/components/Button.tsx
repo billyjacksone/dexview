@@ -145,7 +145,7 @@ const ConnectBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
         <div className="text-left overflow-auto">
           <ConnectElement name="Advertise" link="#" icon="/advertise.svg" />
-          <ConnectElement name="Wallet" link="/eth" icon="/wallet.svg" />
+          <ConnectElement name="Wallet" link="#" icon="/wallet.svg" />
           <ConnectElement name="Last Updated" link="#" icon="/lastupadted.svg" />
           <ConnectElement name="Etherium Mainnet" link="/eth" icon="/etheriumpng.png" />
           <ConnectElement name="Bnb-chain" link="/bnb-chain" icon="/bnbpng.png" />
